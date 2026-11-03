@@ -92,6 +92,6 @@ Plugins: ponytail is on for every subagent (its SubagentStart hook, mode `full`)
 | 2026-11-03 | 04b-look | user | **User correction:** the design "looks generic". Picked the Bold Frost direction plus a mark + wordmark logo. ADHD output mode made the default for all sessions (global CLAUDE.md) | n/a |
 | 2026-11-03 | 04-build | Bolt | Bold Frost redesign + logo (header, footer, favicon, OG), 3 look-check fixes; gate 5/5 green, Playwright 25 pass. Added a Services "Message us" button partly so the contrast test has a light-band button. ponytail: on | 132,250 (51 tool uses, 9.3 min) |
 | 2026-11-03 | 04b-look | lead | Look check (usad-design §8): OK. Only the hero placeholder is left (user's photo pick) | n/a |
-| 2026-11-03 | 05-qa | Bugsy (haiku) | Re-check after redesign: gate 5/5, lhci 99/100/100/100, 36.6 KB compressed first load, contrast measured in all bands (dark measured but not asserted, which is a small test gap). ponytail: on | see notification |
+| 2026-11-03 | 05-qa | Bugsy (haiku) | Re-check after redesign: gate 5/5, lhci 99/100/100/100, 36.6 KB compressed first load, contrast measured in all bands (dark measured but not asserted, which is a small test gap). ponytail: on | 60,878 (17 tool uses, 3.4 min) |
 
 **Token tracking:** subagent tokens come from each task notification. Lead tokens: run `/caveman-stats` or `explain-usage` at the end of each session and paste the total here.
