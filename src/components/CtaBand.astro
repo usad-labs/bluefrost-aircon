@@ -30,7 +30,7 @@ import roomPhoto from '../assets/v3/cta-room.jpg';
 </section>
 
 <style>
-  .stage { position: relative; isolation: isolate; overflow: hidden; padding-block: 220px var(--space-12); }
+  .stage { position: relative; isolation: isolate; overflow: hidden; padding-block: 220px var(--section-pad); }
   /* Phones: the family photo fills the top 300px and fades into navy; the text sits on the faded part. */
   .bg-photo { inset: 0 0 auto 0; height: 300px; --scrim: linear-gradient(180deg, rgb(11 21 48 / 0.15) 0%, rgb(11 21 48 / 0.5) 45%, rgb(11 21 48 / 0.92) 80%, var(--navy) 100%); }
   .bg-photo :global(img) { object-position: 85% 50%; }
@@ -40,7 +40,7 @@ import roomPhoto from '../assets/v3/cta-room.jpg';
   .cta .btn-row { margin-top: var(--space-2); }
   .nb { white-space: nowrap; }
 
-  .contact { padding-block: var(--space-6); }
+  .contact { padding-block: var(--strip-pad); }
   .contact-inner { display: grid; gap: var(--space-3); justify-items: start; align-items: center; }
   .tel { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; font-size: var(--t-h3); font-weight: 800; white-space: nowrap; }
   .contact p { font-weight: 600; }
@@ -52,7 +52,7 @@ import roomPhoto from '../assets/v3/cta-room.jpg';
   /* The headline sits on the dark left of the photo, so the photo only goes full bleed where the text is narrow
      compared with the screen (1024px and up); below that it stacks like the phone layout. */
   @media (min-width: 1024px) {
-    .stage { padding-block: var(--space-24); min-height: 520px; display: grid; align-content: center; }
+    .stage { padding-block: var(--section-pad); }
     .bg-photo { inset: 0; height: auto; --scrim: linear-gradient(90deg, var(--navy) 0%, rgb(11 21 48 / 0.94) 32%, rgb(11 21 48 / 0.7) 46%, rgb(11 21 48 / 0.25) 60%, rgb(11 21 48 / 0) 74%); }
     .bg-photo :global(img) { object-position: 50% 50%; }
     .cta h2 { font-size: clamp(3.5rem, 6.4vw, 5.5rem); }

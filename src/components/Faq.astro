@@ -1,11 +1,23 @@
 ---
 import Icon from './Icon.astro';
 import { faq } from '../data/faq';
+import { site } from '../data/site';
 ---
 <section class="band band-white" id="faq" aria-labelledby="faq-title">
   <div class="container faq">
-    <div class="section-head">
-      <h2 id="faq-title">Questions we often hear</h2>
+    <div class="side">
+      <div class="section-head">
+        <h2 id="faq-title">Questions we often hear</h2>
+      </div>
+      <div class="help">
+        <p>Still unsure? Call or message us</p>
+        <div class="actions">
+          <a class="tel" href={site.phoneHref}><Icon name="phone" size={24} /> {site.phoneDisplay}</a>
+          <a class="btn btn-secondary" href={site.messengerUrl} target="_blank" rel="noopener" aria-label={site.messengerAriaLabel}>
+            <Icon name="message" size={20} /> {site.messengerLabel}
+          </a>
+        </div>
+      </div>
     </div>
     <div class="list">
       {faq.map((item) => (
@@ -25,6 +37,11 @@ import { faq } from '../data/faq';
 <style>
   .faq { display: grid; gap: var(--space-8); }
   .section-head { margin-bottom: 0; }
+  .help { display: grid; gap: var(--space-3); margin-top: var(--space-6); padding-top: var(--space-6); border-top: 1px solid var(--line); font-weight: 600; }
+  .help p { color: var(--fg); }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-6); }
+  .tel { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; font-size: var(--t-h3); font-weight: 800; white-space: nowrap; color: var(--fg); }
+  .tel :global(svg) { color: var(--accent); }
   /* the list runs to the container's right edge, so the + icons line up with every other section */
   .list { border-top: 2px solid var(--fg); }
   details { border-bottom: 1px solid var(--line); }
@@ -40,6 +57,8 @@ import { faq } from '../data/faq';
   details[open] .plus { display: none; }
   details p { padding-bottom: var(--space-6); color: var(--muted); max-width: 65ch; }
   @media (min-width: 900px) {
-    .faq { grid-template-columns: 5fr 7fr; gap: var(--space-12); }
+    /* the left column sticks while the long list scrolls past it */
+    .faq { grid-template-columns: 5fr 7fr; gap: var(--head-gap); }
+    .side { position: sticky; top: var(--space-6); align-self: start; }
   }
 </style>

@@ -20,7 +20,7 @@
 | Stars | accent colour (`#0E7490` on white, cyan on navy), always paired with text "N out of 5" / `aria-label` |
 | Motion | **No JS.** CSS colour transitions 150 ms, press `scale(0.97)`, hover in `(hover: hover)`; all removed under `prefers-reduced-motion`. Logos are a static row |
 | Effects | Flat: no gradients, no shadows (borders only). Cold-air wave SVG used twice: hero bottom edge, CTA band line (>= 768px) |
-| Radius / spacing | cards 16px, hero photo 24px (48px left corners on desktop), buttons 999px; 4/8/12/16/24/32/48/64/96 scale; section padding 64px mobile / 96px desktop; max-width 1120px; 16/24px gutters |
+| Radius / spacing | cards 16px, hero photo 24px (48px left corners on desktop), buttons 999px; 4/8/12/16/24/32/48/64/96 scale; `--section-pad` clamp(56px,7vw,96px) on every section; strips (trust, logos, CTA bar) use `--strip-pad` = 0.4 × section-pad; one `.container` max-width 1200px with `--gutter` clamp(16px,4vw,40px). Grids: services 1/2/4 cols at 600/1100px; pricing 1 col <900, 3 equal-height cols ≥900 with buttons on one line; never an orphan card |
 | Layouts | hero split + bleed photo / trust 2x2 to 4 strip / logos label-left / services numbered rows / stats 2x2 to 4 / how-it-works head-left + timeline / pricing 3 cards (popular = cyan) / reviews 1 big + 2 / FAQ head-left + list-right / CTA band |
 | Tap targets | >= 44x44 px; sticky bottom CTA bar on phones < 768px |
 | Icons | Own small SVG set, 24px, stroke 2, `currentColor` |

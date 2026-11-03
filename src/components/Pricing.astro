@@ -32,11 +32,12 @@ import { site } from '../data/site';
 </section>
 
 <style>
-  .grid { gap: var(--space-8) var(--space-4); }
-  .grid > li { position: relative; display: grid; gap: var(--space-3); align-content: start; padding: var(--space-8) var(--space-6); border-radius: var(--radius-photo); }
+  /* 1 column below 900px, 3 from 900px: never a 2 + 1 orphan. Cards stretch to one height and the button sits at the bottom, so all three buttons line up. */
+  .grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-8) var(--grid-gap); }
+  .grid > li { position: relative; display: flex; flex-direction: column; gap: var(--space-3); --pad-x: var(--space-6); padding: var(--space-8) var(--pad-x); border-radius: var(--radius-photo); }
   /* the badge straddles the card's top edge: a real overlap, so it gets the short navy shadow */
   .badge {
-    position: absolute; top: -16px; left: var(--space-6); padding: var(--space-1) var(--space-4); border-radius: var(--radius-pill);
+    position: absolute; top: -16px; left: var(--pad-x); padding: var(--space-1) var(--space-4); border-radius: var(--radius-pill);
     background: var(--white); color: var(--navy); font-weight: 700; font-size: var(--t-small); box-shadow: var(--shadow-float);
   }
   .price { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2); }
@@ -46,6 +47,21 @@ import { site } from '../data/site';
   .includes { display: grid; gap: var(--space-2); margin-block: var(--space-2) var(--space-6); padding-top: var(--space-4); border-top: 1px solid var(--line); }
   .includes li { display: flex; gap: var(--space-2); align-items: flex-start; }
   .includes :global(svg) { flex: none; margin-top: 2px; color: var(--accent); }
-  .grid > li > .btn { align-self: end; }
-  .unit-note { margin-top: var(--space-8); max-width: 44rem; color: var(--muted); }
+  .grid > li > .btn { margin-top: auto; }
+  /* 600-899px: one card per row, laid out as two columns (name, price | what is included) so a wide card is not mostly empty */
+  @media (min-width: 600px) and (max-width: 899px) {
+    .grid > li { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--space-8); row-gap: var(--space-3); align-content: start; }
+    .grid > li > :where(h3, .price, .units) { grid-column: 1; }
+    .includes { grid-column: 2; grid-row: 1 / span 3; margin: 0; padding-top: 0; border-top: 0; align-content: start; }
+    .grid > li > .btn { grid-column: 1 / -1; margin-top: var(--space-3); }
+  }
+  @media (min-width: 900px) {
+    .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid > li { --pad-x: var(--space-4); }
+    .price strong { font-size: min(var(--t-h2), 3.2vw); }
+  }
+  @media (min-width: 1000px) {
+    .grid > li { --pad-x: var(--space-6); }
+  }
+  .unit-note { margin-top: var(--head-gap); max-width: 44rem; color: var(--muted); }
 </style>

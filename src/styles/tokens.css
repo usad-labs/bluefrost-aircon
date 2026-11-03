@@ -35,17 +35,15 @@
   /* the only shadow: short and navy-tinted, used where one thing overlaps another (badge on photo, card on photo) */
   --shadow-float: 0 6px 16px rgba(11, 21, 48, 0.28);
   --radius-pill: 999px;
-  --max-width: 1120px;
-  --gutter: 16px;
-  --section-pad: 64px;
+  /* layout: one container, one vertical rhythm (every band uses --section-pad; slim strips use --strip-pad) */
+  --max-width: 1200px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --section-pad: clamp(56px, 7vw, 96px);
+  --strip-pad: calc(var(--section-pad) * 0.4);
+  --head-gap: clamp(32px, 4vw, 48px);  /* heading block to its content */
+  --grid-gap: clamp(16px, 2vw, 24px);
   --quote-bar-height: 80px;
 
   --font: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
-@media (min-width: 768px) {
-  :root {
-    --gutter: 24px;
-    --section-pad: 96px;
-  }
-}

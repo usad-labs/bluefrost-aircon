@@ -16,7 +16,7 @@ import { site } from '../data/site';
         <li>
           <div class="media">
             <div class="shot">
-              <Picture src={s.image} alt={s.alt} formats={['avif', 'webp']} widths={[448, 672, 896]} width={896} height={672} sizes="(min-width: 1168px) 548px, (min-width: 768px) calc(50vw - 36px), calc(100vw - 34px)" loading="lazy" decoding="async" />
+              <Picture src={s.image} alt={s.alt} formats={['avif', 'webp']} widths={[448, 672, 896]} width={896} height={672} sizes="(min-width: 1100px) 282px, (min-width: 600px) calc(50vw - 56px), calc(100vw - 48px)" loading="lazy" decoding="async" />
             </div>
             <span class="badge" aria-hidden="true"><Icon name={s.icon} size={28} /></span>
           </div>
@@ -42,7 +42,8 @@ import { site } from '../data/site';
 </section>
 
 <style>
-  .cards { display: grid; gap: var(--space-8); }
+  /* 1 column on phones, 2 from 600px, 4 from 1100px: never an orphan card. Cards stretch, so every price row lines up. */
+  .cards { display: grid; gap: var(--grid-gap); }
   li { display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-photo); }
   .media { position: relative; }
   .shot { aspect-ratio: 16 / 10; overflow: hidden; border-radius: calc(var(--radius-photo) - 1px) calc(var(--radius-photo) - 1px) 0 0; background: var(--navy-2); }
@@ -62,9 +63,19 @@ import { site } from '../data/site';
   .price strong { font-size: var(--t-h3); font-weight: 800; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
   .go { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--link); font-weight: 700; }
   .price:hover .go { text-decoration: underline; text-underline-offset: 4px; }
-  .ask { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-6); margin-top: var(--space-12); font-weight: 600; }
+  .ask { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-6); margin-top: var(--space-6); font-weight: 600; }
 
-  @media (min-width: 768px) {
-    .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-12) var(--space-8); }
+  @media (min-width: 600px) {
+    .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1100px) {
+    .cards { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .shot { aspect-ratio: 4 / 3; }
+    .body { padding: 40px var(--space-4) var(--space-4); }
+    .detail { margin-bottom: var(--space-2); }
+    .badge { left: var(--space-4); }
+    /* narrow cards: price above, link below, so the row never wraps unevenly */
+    .price { flex-direction: column; align-items: flex-start; justify-content: center; gap: 0; padding-top: var(--space-3); }
+    .go { font-size: var(--t-small); gap: var(--space-1); }
   }
 </style>

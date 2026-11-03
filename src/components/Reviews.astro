@@ -32,7 +32,8 @@ import { reviews } from '../data/reviews';
 </section>
 
 <style>
-  .grid { gap: var(--space-4); }
+  /* 1 column on phones; 2 from 600px with the featured quote across the top (1 + 2, no orphan); 7fr + 5fr from 900px */
+  .grid { grid-template-columns: minmax(0, 1fr); }
   .grid > li { border-radius: var(--radius-photo); }
   figure { display: grid; gap: var(--space-4); margin: 0; height: 100%; align-content: space-between; }
   .rating { display: flex; align-items: center; gap: 2px; color: var(--accent); }
@@ -45,8 +46,13 @@ import { reviews } from '../data/reviews';
   .face :global(img) { width: 100%; height: 100%; object-fit: cover; }
   .town { color: var(--muted); font-size: var(--t-small); }
   /* one big quote on the left, two smaller on the right: not a row of equal cards */
+  @media (min-width: 600px) {
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .featured { grid-column: 1 / -1; }
+  }
   @media (min-width: 900px) {
     .grid { grid-template-columns: 7fr 5fr; }
+    .featured { grid-column: auto; }
     .featured { grid-row: span 2; padding: var(--space-12); }
     .featured blockquote { font-size: var(--t-h2); line-height: 1.2; letter-spacing: -0.02em; }
     .featured .face { width: 80px; height: 80px; }

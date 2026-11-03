@@ -31,7 +31,7 @@ import heroImage from '../assets/v3/hero.jpg';
   /* Phones: the photo fills the top 360px and fades into navy; the text sits on the faded part, so the scrim is strong there. */
   .bg-photo { inset: 0 0 auto 0; height: 360px; --scrim: linear-gradient(180deg, rgb(11 21 48 / 0.2) 0%, rgb(11 21 48 / 0.55) 35%, rgb(11 21 48 / 0.92) 68%, var(--navy) 100%); }
   .bg-photo :global(img) { object-position: 82% 30%; }
-  .inner { position: relative; padding-block: 188px var(--space-12); }
+  .inner { position: relative; padding-block: 188px var(--section-pad); }
   .copy { display: grid; gap: var(--space-4); }
   .nb { white-space: nowrap; }
   .lead { font-size: var(--t-body); font-weight: 500; line-height: 1.5; max-width: 34rem; }
@@ -61,10 +61,10 @@ import heroImage from '../assets/v3/hero.jpg';
   @media (min-width: 900px) {
     .bg-photo { inset: 0; height: auto; --scrim: linear-gradient(90deg, var(--navy) 0%, rgb(11 21 48 / 0.94) 28%, rgb(11 21 48 / 0.7) 46%, rgb(11 21 48 / 0.2) 62%, rgb(11 21 48 / 0) 78%); }
     .bg-photo :global(img) { object-position: 0% 15%; }
-    .inner { display: grid; align-content: center; min-height: clamp(540px, 44vw, 680px); padding-block: var(--space-16); }
+    .inner { display: grid; align-content: center; min-height: clamp(540px, 44vw, 680px); padding-block: var(--section-pad); }
     .copy { max-width: 33rem; gap: var(--space-6); }
     .hero h1 { font-size: clamp(3rem, 6.2vw, 5rem); }
-    .proof { left: auto; right: var(--gutter); top: auto; bottom: var(--space-12); max-width: none; display: flex; align-items: center; gap: var(--space-3); }
+    .proof { left: auto; right: var(--gutter); top: auto; bottom: var(--head-gap); max-width: none; display: flex; align-items: center; gap: var(--space-3); }
     .score { padding-right: var(--space-3); border-right: 1px solid var(--line-light); }
   }
 </style>
