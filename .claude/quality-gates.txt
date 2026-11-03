@@ -1,0 +1,5 @@
+npm run check
+npm run build
+npx playwright test
+npx html-validate "dist/**/*.html"
+gitleaks dir . --no-banner --redact

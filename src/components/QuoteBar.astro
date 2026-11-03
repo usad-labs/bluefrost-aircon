@@ -1,0 +1,27 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+---
+<!-- Sticky quote bar: phones only (< 768px), placed after the footer in the DOM so it does not come before <main> for screen readers. body padding-bottom in global.css keeps content clear of it. -->
+<div class="quote-bar band-dark" role="group" aria-label="Quick quote">
+  <a class="btn btn-primary" href={site.phoneHref}>
+    <Icon name="phone" size={20} /> {site.quoteLabel}
+  </a>
+  <a class="btn btn-secondary" href={site.messengerUrl} target="_blank" rel="noopener" aria-label={site.messengerAriaLabel}>
+    {site.messengerLabel}
+  </a>
+</div>
+
+<style>
+  .quote-bar {
+    position: fixed; inset: auto 0 0 0; z-index: 50;
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background: var(--bg); border-top: 1px solid var(--blue-800);
+  }
+  .quote-bar .btn { min-height: 48px; padding-inline: var(--space-3); font-size: 0.9375rem; }
+
+  @media (min-width: 768px) {
+    .quote-bar { display: none; }
+  }
+</style>

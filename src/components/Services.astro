@@ -1,0 +1,29 @@
+---
+import Icon from './Icon.astro';
+import { services } from '../data/services';
+---
+<section class="band band-light" id="services" aria-labelledby="services-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="services-title">Everything your aircon needs</h2>
+      <p>Four services, one team, one clear price before we start.</p>
+    </div>
+    <ul class="grid">
+      {services.map((s) => (
+        <li class="card">
+          <span class="icon"><Icon name={s.icon} /></span>
+          <h3>{s.name}</h3>
+          <p class="benefit">{s.benefit}</p>
+          <p class="detail">{s.detail}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  li { display: grid; gap: var(--space-2); align-content: start; }
+  .icon { display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: var(--space-2); border-radius: 50%; background: var(--blue-100); color: var(--blue-800); }
+  .benefit { font-weight: 600; }
+  .detail { color: var(--muted); }
+</style>

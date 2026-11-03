@@ -1,0 +1,19 @@
+---
+import Icon from './Icon.astro';
+import { trustClaims } from '../data/site';
+---
+<section class="band band-white trust" aria-label="Why choose BlueFrost">
+  <div class="container">
+    <ul class="grid">
+      {trustClaims.map((c) => (
+        <li><Icon name={c.icon} /><span>{c.text}</span></li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .trust { padding-block: var(--space-8); }
+  li { display: flex; align-items: center; gap: var(--space-3); font-weight: 600; }
+  li :global(svg) { flex: none; color: var(--blue-800); }
+</style>

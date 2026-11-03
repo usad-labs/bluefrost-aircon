@@ -1,0 +1,39 @@
+---
+import Icon from './Icon.astro';
+import { reviews, initials } from '../data/reviews';
+---
+<section class="band band-light" id="reviews" aria-labelledby="reviews-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="reviews-title">What customers say</h2>
+      <p>Sample reviews, invented for this demo.</p>
+    </div>
+    <ul class="grid">
+      {reviews.map((r) => (
+        <li class="card">
+          <figure>
+            <p class="rating" role="img" aria-label={`Rated ${r.rating} out of 5 stars`}>
+              {[1, 2, 3, 4, 5].map((n) => <Icon name="star" size={20} filled={n <= r.rating} />)}
+              <span class="rating-text">{r.rating} out of 5</span>
+            </p>
+            <blockquote>“{r.text}”</blockquote>
+            <figcaption>
+              <span class="avatar" aria-hidden="true">{initials(r.name)}</span>
+              <span><strong>{r.name}</strong><br /><span class="town">{r.town}, Cavite</span></span>
+            </figcaption>
+          </figure>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  figure { display: grid; gap: var(--space-4); margin: 0; }
+  .rating { display: flex; align-items: center; gap: 2px; color: var(--star); }
+  .rating-text { margin-left: var(--space-2); font-size: 0.875rem; font-weight: 600; color: var(--muted); }
+  blockquote { margin: 0; }
+  figcaption { display: flex; align-items: center; gap: var(--space-3); }
+  .avatar { display: grid; place-items: center; flex: none; width: 44px; height: 44px; border-radius: 50%; background: var(--blue-900); color: var(--white); font-weight: 700; }
+  .town { color: var(--muted); font-size: 0.9375rem; }
+</style>

@@ -1,0 +1,41 @@
+/* Design tokens from design-system/bluefrost-aircon/MASTER.md ("BlueFrost overrides" win). */
+:root {
+  --navy: #0b1530;
+  --blue-900: #1e3a8a;
+  --blue-800: #1e40af;
+  --blue-300: #93c5fd;
+  --blue-200: #bfdbfe;
+  --blue-100: #dbeafe;
+  --blue-50: #eff6ff;
+  --orange: #ea580c;
+  --orange-hover: #f97316; /* hover bg: dark text 6.44:1 (was #c2410c, 3.48:1 fail) */
+  --orange-soft: #fdba74;
+  --slate: #475569;
+  --star: #b45309;
+  --white: #ffffff;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  --radius-card: 12px;
+  --radius-pill: 999px;
+  --max-width: 1120px;
+  --gutter: 16px;
+  --section-pad: 48px;
+  --quote-bar-height: 80px;
+
+  --font: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 24px;
+    --section-pad: 64px;
+  }
+}

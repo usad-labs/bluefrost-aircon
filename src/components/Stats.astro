@@ -1,0 +1,18 @@
+---
+import { stats } from '../data/stats';
+---
+<section class="band band-dark" aria-label="BlueFrost in numbers (sample data)">
+  <div class="container">
+    <ul class="grid">
+      {stats.map((s) => (
+        <li><strong>{s.value}</strong><span>{s.label}</span></li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  li { display: grid; gap: var(--space-1); text-align: center; }
+  strong { font-size: clamp(2rem, 6vw, 2.75rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+  span { color: var(--muted); font-weight: 500; }
+</style>

@@ -1,0 +1,22 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+---
+<section class="band band-accent" aria-labelledby="cta-title">
+  <div class="container cta">
+    <h2 id="cta-title">Ready for a cold room?</h2>
+    <p>Call or message us for a quote. We usually reply within the hour.</p>
+    <div class="btn-row">
+      <a class="btn dark" href={site.phoneHref}><Icon name="phone" size={20} /> {site.quoteLabel}</a>
+      <a class="btn btn-secondary" href={site.messengerUrl} target="_blank" rel="noopener" aria-label={site.messengerAriaLabel}>
+        <Icon name="message" size={20} /> {site.messengerLabel}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta { display: grid; gap: var(--space-4); justify-items: start; }
+  .dark { background: var(--navy); color: var(--white); }
+  .dark:hover { background: var(--blue-900); }
+</style>

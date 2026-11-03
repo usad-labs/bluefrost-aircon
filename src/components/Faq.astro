@@ -1,0 +1,38 @@
+---
+import Icon from './Icon.astro';
+import { faq } from '../data/faq';
+---
+<section class="band band-dark" id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="faq-title">Questions we often hear</h2>
+    </div>
+    <div class="list">
+      {faq.map((item) => (
+        <details>
+          <summary>
+            <span>{item.q}</span>
+            <span class="plus"><Icon name="plus" size={24} /></span>
+            <span class="minus"><Icon name="minus" size={24} /></span>
+          </summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .list { max-width: 48rem; }
+  details { border-bottom: 1px solid rgba(191, 219, 254, 0.35); }
+  summary {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+    min-height: 56px; padding-block: var(--space-3); cursor: pointer; font-weight: 600; list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary :global(svg) { color: var(--orange); }
+  .minus { display: none; }
+  details[open] .minus { display: block; }
+  details[open] .plus { display: none; }
+  details p { padding-bottom: var(--space-4); color: var(--muted); }
+</style>

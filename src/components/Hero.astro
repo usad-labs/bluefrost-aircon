@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+// Swap the hero photo here: change this one import to the chosen photo (e.g. ../assets/hero.jpg),
+// update the alt text below and add its credit to CREDITS.md.
+import heroImage from '../assets/hero-placeholder.svg';
+---
+<section class="band band-light hero" aria-labelledby="hero-title">
+  <div class="container hero-grid">
+    <div class="copy">
+      <h1 id="hero-title">Aircon weak, noisy or leaking? We fix it, usually the same day.</h1>
+      <p class="lead">Trained technicians, prices quoted before we start, and a 90-day service warranty across Cavite.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href={site.phoneHref}><Icon name="phone" size={20} /> {site.quoteLabel}</a>
+        <a class="btn btn-secondary" href={site.messengerUrl} target="_blank" rel="noopener" aria-label={site.messengerAriaLabel}>
+          <Icon name="message" size={20} /> {site.messengerLabel}
+        </a>
+      </div>
+      <p class="phone-line">Or call <a href={site.phoneHref}>{site.phoneDisplay}</a> (sample number)</p>
+    </div>
+    <div class="photo">
+      <Image
+        src={heroImage}
+        alt="Placeholder illustration of a wall-mounted air conditioner blowing cool air"
+        width={1200}
+        height={900}
+        sizes="(min-width: 900px) 520px, 100vw"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { padding-block: var(--space-8) var(--section-pad); }
+  .hero-grid { display: grid; gap: var(--space-8); align-items: center; }
+  .copy { display: grid; gap: var(--space-6); justify-items: start; }
+  .lead { font-size: 1.125rem; color: var(--muted); max-width: 34rem; }
+  .copy .btn-row { width: 100%; }
+  .phone-line { color: var(--muted); }
+  .phone-line a { display: inline-block; padding-block: var(--space-3); font-weight: 600; color: var(--link); }
+  .photo img { width: 100%; height: auto; border-radius: var(--radius-card); border: 1px solid var(--blue-200); }
+
+  @media (min-width: 900px) {
+    .hero { padding-block: var(--section-pad); }
+    .hero-grid { grid-template-columns: 1.1fr 1fr; gap: var(--space-12); }
+  }
+</style>

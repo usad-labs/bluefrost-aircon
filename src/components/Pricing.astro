@@ -1,0 +1,47 @@
+---
+import Icon from './Icon.astro';
+import { packages, formatPeso } from '../data/pricing';
+import { site } from '../data/site';
+// Importing pricing.ts runs its self-check: a broken price table fails the build.
+---
+<section class="band band-dark" id="pricing" aria-labelledby="pricing-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="pricing-title">Clear prices, per unit</h2>
+      <p>Sample prices in pesos. You get the exact price before we start.</p>
+    </div>
+    <ul class="grid">
+      {packages.map((p) => (
+        <li class:list={['card', { popular: p.popular }]}>
+          {p.popular && <p class="badge">Most popular</p>}
+          <h3>{p.name}</h3>
+          <p class="price"><span class="from">from</span> <strong>{formatPeso(p.fromPrice)}</strong> <span class="from">per unit</span></p>
+          <p class="units">Window {formatPeso(p.unitPrices.window)} · Split {formatPeso(p.unitPrices.split)}</p>
+          <ul class="includes">
+            {p.includes.map((item) => <li><Icon name="check" size={20} /><span>{item}</span></li>)}
+          </ul>
+          <a class="btn btn-primary" href={site.phoneHref} aria-label={`Get a quote for ${p.name}`}>{site.quoteLabel}</a>
+        </li>
+      ))}
+    </ul>
+    <p class="unit-note">
+      The “from” price is for a window-type unit. Split-type units cost more because they have an
+      indoor and an outdoor part to clean, so we price each type separately.
+    </p>
+  </div>
+</section>
+
+<style>
+  .grid > li { display: grid; gap: var(--space-3); align-content: start; position: relative; }
+  .popular { border: 2px solid var(--orange); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35); }
+  .badge { justify-self: start; padding: var(--space-1) var(--space-3); border-radius: var(--radius-pill); background: var(--orange); color: var(--navy); font-weight: 700; font-size: 0.875rem; }
+  .price { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2); }
+  .price strong { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
+  .from { color: var(--muted); }
+  .units { color: var(--muted); font-size: 0.9375rem; }
+  .includes { display: grid; gap: var(--space-2); margin-block: var(--space-2) var(--space-4); }
+  .includes li { display: flex; gap: var(--space-2); align-items: flex-start; }
+  .includes :global(svg) { flex: none; margin-top: 2px; color: var(--blue-800); }
+  .grid > li > .btn { align-self: end; }
+  .unit-note { margin-top: var(--space-8); max-width: 44rem; color: var(--muted); }
+</style>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+  <rect width="1200" height="900" fill="#DBEAFE"/>
+  <rect y="640" width="1200" height="260" fill="#BFDBFE"/>
+  <!-- wall-mounted split unit -->
+  <rect x="190" y="190" width="820" height="230" rx="40" fill="#FFFFFF" stroke="#1E40AF" stroke-width="8"/>
+  <rect x="230" y="235" width="740" height="40" rx="20" fill="#EFF6FF" stroke="#1E40AF" stroke-width="4"/>
+  <rect x="230" y="355" width="740" height="26" rx="13" fill="#93C5FD" stroke="#1E40AF" stroke-width="4"/>
+  <circle cx="910" cy="300" r="12" fill="#EA580C"/>
+  <!-- cool air -->
+  <g fill="none" stroke="#1E40AF" stroke-width="10" stroke-linecap="round" opacity="0.55">
+    <path d="M300 450c30 50-30 90 0 140s-20 80 0 120"/>
+    <path d="M440 450c30 50-30 90 0 140s-20 80 0 120"/>
+    <path d="M580 450c30 50-30 90 0 140s-20 80 0 120"/>
+    <path d="M720 450c30 50-30 90 0 140s-20 80 0 120"/>
+    <path d="M860 450c30 50-30 90 0 140s-20 80 0 120"/>
+  </g>
+  <!-- snowflake -->
+  <g fill="none" stroke="#1E3A8A" stroke-width="12" stroke-linecap="round" transform="translate(960 700)">
+    <path d="M0-70v140M-60-35l120 70M60-35l-120 70"/>
+  </g>
+</svg>
