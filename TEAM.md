@@ -60,7 +60,7 @@ Plugins: ponytail is on for every subagent (its SubagentStart hook, mode `full`)
 - ✋ 1 deliverables: approved 2026-11-03
 - ✋ 2 visuals + team: approved 2026-11-03 (stack changed from plain HTML to Astro + TS + scoped CSS at the user's request)
 - ✋ 3 installs: approved 2026-11-03: spec-kit (`specify-cli` 1.2.6 via uv), ui-ux-pro-max (project-only), npm dev tools (astro, @astrojs/check, typescript, @playwright/test + chromium, @axe-core/playwright, @lhci/cli, html-validate), gitleaks (winget)
-- ✋ 4 public: nothing publishes, pushes or deploys without a yes. Vercel fallback if Hobby refuses the org repo: deploy with the CLI
+- ✋ 4 public: repo push approved 2026-11-03 (https://github.com/usad-labs/bluefrost-aircon). Vercel deploy: user imports it. Vercel fallback if Hobby refuses the org repo: deploy with the CLI
 
 ## 7. Log
 | Date | Stage | Role | What happened | Tokens |
@@ -114,5 +114,6 @@ Plugins: ponytail is on for every subagent (its SubagentStart hook, mode `full`)
 | 2026-11-03 | 04-build | Bolt | Row removed; FAQ cards (first open), help card, heading aligned to the first card (`text-box: trim-start cap`); Reviews → band-white so it doesn't merge with the FAQ. 1 test failed only from the intended open-by-default item. ponytail: on | 104,100 (48 tool uses, 6.2 min) |
 | 2026-11-03 | 04b-look | lead | Look check OK at 1440/390. Re-cropped the help-card avatar from the hero photo (the old crop showed mostly cap) | n/a |
 | 2026-11-03 | 05-qa | Bugsy (haiku) | Final-touch re-check PASS, 0 bugs: FAQ test updated (first open), new heading-alignment test (proven to fail on a 20px offset), 82 pass, 246 over 3 repeats; lhci 100/100/100/100. ponytail: on | 91,727 (34 tool uses, 7 min) |
+| 2026-11-03 | 07-release | lead | ✋ Gate 4 yes → pre-push checks (1 noreply author, gitleaks clean, 0 tool files, 0 private paths) → public repo usad-labs/bluefrost-aircon created and main pushed | n/a |
 
 **Token tracking:** subagent tokens come from each task notification. Lead tokens: run `/caveman-stats` or `explain-usage` at the end of each session and paste the total here.
