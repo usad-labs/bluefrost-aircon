@@ -3,7 +3,6 @@ import { Picture } from 'astro:assets';
 import Icon from './Icon.astro';
 import { services } from '../data/services';
 import { formatPeso } from '../data/pricing';
-import { site } from '../data/site';
 ---
 <section class="band band-light" id="services" aria-labelledby="services-title">
   <div class="container">
@@ -32,18 +31,14 @@ import { site } from '../data/site';
         </li>
       ))}
     </ul>
-    <div class="ask">
-      <p>Not sure which one you need?</p>
-      <a class="btn btn-secondary" href={site.messengerUrl} target="_blank" rel="noopener" aria-label={site.messengerAriaLabel}>
-        <Icon name="message" size={20} /> {site.messengerLabel}
-      </a>
-    </div>
   </div>
 </section>
 
 <style>
   /* 1 column on phones, 2 from 600px, 4 from 1100px: never an orphan card. Cards stretch, so every price row lines up. */
   .cards { display: grid; gap: var(--grid-gap); }
+  /* the cards end the section, so the bottom is tighter than the top (phones keep the standard 56px) */
+  section { padding-bottom: min(var(--section-pad), var(--space-16)); }
   li { display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-photo); }
   .media { position: relative; }
   .shot { aspect-ratio: 16 / 10; overflow: hidden; border-radius: calc(var(--radius-photo) - 1px) calc(var(--radius-photo) - 1px) 0 0; background: var(--navy-2); }
@@ -63,7 +58,6 @@ import { site } from '../data/site';
   .price strong { font-size: var(--t-h3); font-weight: 800; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
   .go { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--link); font-weight: 700; }
   .price:hover .go { text-decoration: underline; text-underline-offset: 4px; }
-  .ask { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-6); margin-top: var(--space-6); font-weight: 600; }
 
   @media (min-width: 600px) {
     .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }

@@ -45,6 +45,13 @@ for (const width of WIDTHS) {
       expect(sw).toBeLessThanOrEqual(cw);
     });
 
+    test('FAQ: heading top within 8px of the first card top (900px and up)', async ({ page }) => {
+      test.skip(width < 900, 'the FAQ heading and list sit side by side from 900px');
+      const [heading] = await boxes(page, '#faq-title');
+      const [card] = await boxes(page, '#faq details');
+      expect(Math.abs(heading.top - card.top), `heading ${heading.top} vs first card ${card.top}`).toBeLessThanOrEqual(8);
+    });
+
     test('pricing: quote buttons line up and no orphan row', async ({ page }) => {
       const cards = await boxes(page, '#pricing ul.grid > li');
       expect(cards).toHaveLength(3);

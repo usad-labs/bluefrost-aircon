@@ -68,23 +68,31 @@ test('3 reviews with a readable rating', async ({ page }) => {
   }
 });
 
-test('5-6 FAQ items open with the keyboard', async ({ page }) => {
+test('5-6 FAQ items: first starts open and closes with Enter; the rest start closed and open with Enter/Space', async ({ page }) => {
   const items = page.locator('#faq details');
   const n = await items.count();
   expect(n).toBeGreaterThanOrEqual(5);
   expect(n).toBeLessThanOrEqual(6);
+  // The first card starts open (Faq.astro: details open={i === 0}).
   const first = items.first();
-  await first.locator('summary').focus();
-  await expect(first).not.toHaveAttribute('open', '');
-  await page.keyboard.press('Enter');
   await expect(first).toHaveAttribute('open', '');
   await expect(first.locator('p')).toBeVisible();
+  await first.locator('summary').focus();
+  await page.keyboard.press('Enter');
+  await expect(first).not.toHaveAttribute('open', '');
+  await expect(first.locator('p')).toBeHidden();
+  // Every other card starts closed.
+  for (let i = 1; i < n; i++) await expect(items.nth(i)).not.toHaveAttribute('open', '');
   const second = items.nth(1);
   await second.locator('summary').focus();
   await page.keyboard.press('Space');
   await expect(second).toHaveAttribute('open', '');
   await page.keyboard.press('Enter');
   await expect(second).not.toHaveAttribute('open', '');
+  const third = items.nth(2);
+  await third.locator('summary').focus();
+  await page.keyboard.press('Enter');
+  await expect(third).toHaveAttribute('open', '');
 });
 
 test('footer has the fictional-business notice and USAD credit', async ({ page }) => {
