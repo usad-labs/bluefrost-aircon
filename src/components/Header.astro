@@ -1,11 +1,23 @@
 ---
 import Logo from './Logo.astro';
 import { site } from '../data/site';
+
+const links = [
+  { href: '#services', label: 'Services' },
+  { href: '#pricing', label: 'Pricing' },
+  { href: '#reviews', label: 'Reviews' },
+  { href: '#faq', label: 'FAQ' },
+];
 ---
 <header class="top band-dark">
   <div class="container top-inner">
     <a class="logo-link" href="/" aria-label={`${site.name}, home`}><Logo /></a>
-    <div class="desktop-cta">
+    <div class="right">
+      <nav class="nav" aria-label="Main">
+        <ul>
+          {links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+        </ul>
+      </nav>
       <a class="phone" href={site.phoneHref}>{site.phoneDisplay}</a>
       <a class="btn btn-primary" href={site.phoneHref}>{site.quoteLabel}</a>
     </div>
@@ -13,14 +25,23 @@ import { site } from '../data/site';
 </header>
 
 <style>
-  .top { padding-block: 0; }
+  /* band-dark only sets variables; without color the nav and phone links inherit the body's navy and vanish on navy. */
+  .top { padding-block: 0; color: var(--fg); }
   .top-inner { display: flex; align-items: center; justify-content: space-between; min-height: 72px; }
   .logo-link { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
-  .desktop-cta { display: none; align-items: center; gap: var(--space-6); }
-  .phone { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; text-decoration: none; }
-  .phone:hover { text-decoration: underline; }
+  /* Phones: logo only (the sticky quote bar has the action). 768px+: logo + button. 1000px+: nav and phone too. */
+  .right { display: none; align-items: center; gap: var(--space-6); }
+  .nav, .phone { display: none; }
+  .nav ul { display: flex; gap: var(--space-1); }
+  .nav a, .phone { align-items: center; min-height: 44px; font-weight: 600; text-decoration: none; }
+  .nav a { display: inline-flex; padding-inline: var(--space-3); border-radius: var(--radius-pill); }
+  .nav a:hover, .phone:hover { text-decoration: underline; text-underline-offset: 4px; }
 
   @media (min-width: 768px) {
-    .desktop-cta { display: flex; }
+    .right { display: flex; }
+  }
+  @media (min-width: 1000px) {
+    .nav { display: block; }
+    .phone { display: inline-flex; }
   }
 </style>

@@ -1,35 +1,83 @@
 ---
 import Logo from './Logo.astro';
 import { site } from '../data/site';
+import { services } from '../data/services';
+
+// Section ids: #services, #how-it-works, #pricing, #reviews, #faq (each set on its section component).
+const quickLinks = [
+  { href: '#services', label: 'Services' },
+  { href: '#how-it-works', label: 'How it works' },
+  { href: '#pricing', label: 'Pricing' },
+  { href: '#reviews', label: 'Reviews' },
+  { href: '#faq', label: 'FAQ' },
+];
 ---
-<footer class="band band-dark">
+<footer class="band band-dark foot">
   <div class="container">
     <div class="cols">
-      <div>
+      <div class="brand">
         <Logo />
         <p class="tag">{site.tagline}</p>
+        <p>Aircon cleaning, repair, installation and gas refill for homes and small businesses across Cavite.</p>
       </div>
-      <div>
+      <nav aria-labelledby="foot-links">
+        <h3 id="foot-links">Quick links</h3>
+        <ul>
+          {quickLinks.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+        </ul>
+      </nav>
+      <nav aria-labelledby="foot-services">
+        <h3 id="foot-services">Services</h3>
+        <ul>
+          {services.map((s) => <li><a href="#services">{s.name}</a></li>)}
+        </ul>
+      </nav>
+      <div class="reach">
         <h3>Contact (sample)</h3>
-        <p><a href={site.phoneHref}>{site.phoneDisplay}</a></p>
+        <p><a class="tel" href={site.phoneHref}>{site.phoneDisplay}</a></p>
         <p>{site.hours}</p>
-      </div>
-      <div>
-        <h3>Service area</h3>
-        <p>{site.serviceArea.join(', ')}</p>
+        <p>Service area: {site.serviceArea.join(', ')}.</p>
       </div>
     </div>
-    <p class="fine">BlueFrost Aircon is a fictional business. All names, numbers, prices and reviews are sample data. Photos of people are AI-generated.</p>
-    <p class="fine">Built by USAD Labs · Connect. Automate. Accelerate.</p>
+    <div class="bar">
+      <p>BlueFrost Aircon is a fictional business. All names, numbers, prices and reviews are sample data. Photos of people are AI-generated.</p>
+      <p>Built by USAD Labs · Connect. Automate. Accelerate.</p>
+    </div>
   </div>
 </footer>
 
 <style>
-  .cols { display: grid; gap: var(--space-8); grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
-  .tag { margin-top: var(--space-3); }
+  /* Own padding token: the footer only holds links, so it is tighter than a section. */
+  .foot { padding-block: var(--footer-pad) var(--space-6); }
+  /* Phones: brand on top, Quick links and Services side by side, Contact below. */
+  .cols { display: grid; gap: var(--space-8) var(--space-4); grid-template-columns: 1fr 1fr; }
+  .brand, .reach { grid-column: 1 / -1; }
+  .brand p { color: var(--muted); max-width: 30rem; }
+  .brand .tag { margin-top: var(--space-3); color: var(--fg); font-weight: 700; }
+  .brand .tag + p { margin-top: var(--space-1); }
   h3 { font-size: var(--t-body); font-weight: 700; margin-bottom: var(--space-2); }
-  p { color: var(--muted); }
-  a { display: inline-block; padding-block: var(--space-2); color: var(--link); font-weight: 600; }
-  .fine { margin-top: var(--space-4); font-size: var(--t-small); }
-  .cols + .fine { margin-top: var(--head-gap); padding-top: var(--space-6); border-top: 1px solid var(--line); }
+  .cols p { color: var(--muted); }
+  a { display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); text-decoration: none; }
+  a.tel { color: var(--link); font-weight: 700; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  .bar {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2) var(--space-8);
+    margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--line);
+    font-size: var(--t-small); color: var(--muted);
+  }
+  /* Note takes the free width and wraps; the credit sits at the right edge on one row, or drops below on narrow screens. */
+  .bar p:first-child { flex: 1 1 24rem; }
+
+  @media (min-width: 600px) {
+    .cols { gap: var(--space-8) var(--space-12); }
+    .brand, .reach { grid-column: auto; }
+  }
+  @media (min-width: 1000px) {
+    .cols { grid-template-columns: 1.4fr 1fr 1fr 1.4fr; column-gap: var(--space-8); }
+  }
+  /* Mouse users get compact link rows; touch and small screens keep 44px targets. */
+  @media (min-width: 1000px) and (pointer: fine) {
+    a { min-height: 32px; }
+  }
 </style>

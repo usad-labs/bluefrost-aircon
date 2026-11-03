@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import { imagesNotLoaded, scrollThrough } from './helpers';
+import { imagesNotLoaded, norm, scrollThrough } from './helpers';
 
 for (const width of [320, 360, 768, 1280]) {
   test(`no sideways scroll at ${width}px`, async ({ page }) => {
@@ -107,3 +107,23 @@ test('360px keyboard order: main content comes before the sticky quote bar', asy
   expect(order.slice(0, firstBar)).toContain('main');
   expect(order.slice(0, firstBar)).toContain('footer');
 });
+
+// CTA band: "Get a quote" and "Message us" share one row from 600px (the CSS breakpoint), and stack below it.
+// 599 / 600 are the edge; 560-599 matters because the global .btn-row switches to a row at 560 and the CTA overrides it.
+for (const width of [360, 559, 560, 599, 600, 768, 1024, 1440]) {
+  test(`CTA band buttons ${width >= 600 ? 'share a row' : 'stack'} at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/');
+    const btns = page.locator('.cta-band .btn-row .btn');
+    await expect(btns).toHaveCount(2);
+    expect((await btns.allTextContents()).map(norm)).toEqual(['Get a quote', 'Message us']); // content: the right two, in order (labels contain nbsp)
+    const [a, b] = await btns.evaluateAll((els) =>
+      els.map((e) => {
+        const r = e.getBoundingClientRect();
+        return { top: r.top + window.scrollY, bottom: r.bottom + window.scrollY };
+      }),
+    );
+    if (width >= 600) expect(Math.abs(a.top - b.top), `tops ${a.top} vs ${b.top}`).toBeLessThanOrEqual(2);
+    else expect(b.top, `second button starts below the first (${a.bottom})`).toBeGreaterThanOrEqual(a.bottom - 1);
+  });
+}

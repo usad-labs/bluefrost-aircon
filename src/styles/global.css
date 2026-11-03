@@ -54,11 +54,8 @@ h3 { font-size: var(--t-h3); font-weight: 700; letter-spacing: -0.01em; line-hei
   --btn-bg: var(--navy); --btn-fg: var(--white); --btn-hover: var(--navy-hover);
 }
 .band-white { --bg: var(--white); }
-.band-accent {
-  --bg: var(--cyan); --fg: var(--navy); --muted: var(--navy); --ring: var(--navy); --outline: var(--navy);
-  --link: var(--navy); --accent: var(--navy); --line: rgba(11, 21, 48, 0.3);
-  --btn-bg: var(--navy); --btn-fg: var(--white); --btn-hover: var(--navy-hover);
-}
+/* Anchor jumps (header nav, footer links). The header is not sticky, so this is only a small cushion; use the header height if it ever becomes sticky. */
+main > section[id] { scroll-margin-top: var(--space-4); }
 
 .container { width: 100%; max-width: calc(var(--max-width) + 2 * var(--gutter)); margin-inline: auto; padding-inline: var(--gutter); }
 .section-head { max-width: 40rem; margin-bottom: var(--head-gap); }

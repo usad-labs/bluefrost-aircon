@@ -31,7 +31,12 @@ const measure = (el: HTMLElement) => {
     return 0.2126 * r + 0.7152 * g + 0.0722 * b;
   };
   const [hi, lo] = [lum(fg), lum(bg)].sort((a, b) => b - a);
-  const band = el.closest('.card') ? 'card' : (el.closest('.band')?.className.match(/band-\w+/)?.[0] ?? 'none');
+  // the CTA photo band is a band-dark with .stage; give it its own label so the test can require it
+  const band = el.closest('.card')
+    ? 'card'
+    : el.closest('.stage')
+      ? 'cta'
+      : (el.closest('.band')?.className.match(/band-\w+/)?.[0] ?? 'none');
   return {
     ratio: (hi + 0.05) / (lo + 0.05),
     label: `${band} / ${el.className.replace('btn ', '')} / "${(el.textContent ?? '').trim()}"`,
@@ -64,9 +69,9 @@ for (const width of [360, 1280]) {
         await b.hover();
         rows.push(await b.evaluate(measure));
       }
-      // must cover all three bands, otherwise the test proves nothing
+      // must cover every band that has a button, otherwise the test proves nothing
       const bands = new Set(rows.map((r) => r.label.split(' / ')[0]));
-      expect([...bands]).toEqual(expect.arrayContaining(['band-light', 'band-accent', 'card']));
+      expect([...bands]).toEqual(expect.arrayContaining(['band-light', 'band-dark', 'card', 'cta']));
       expect(failures(rows, 'hover')).toEqual([]);
     });
 

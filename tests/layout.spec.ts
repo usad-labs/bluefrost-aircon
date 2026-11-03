@@ -1,10 +1,9 @@
 import { test, expect, type Page } from '@playwright/test';
 
 // Device / alignment regression tests, run against the built site (same as the other specs).
-const WIDTHS = [360, 390, 768, 1024, 1280, 1440, 1920];
+// 900 / 1100 are grid switch points in the CSS; 1366 is the common laptop width.
+const WIDTHS = [360, 390, 768, 900, 1024, 1100, 1280, 1366, 1440, 1920];
 const TOL = 2; // px: allowed difference for "same y"
-
-type Box = { top: number; height: number };
 
 // Page-y boxes of every element matching `selector`.
 const boxes = (page: Page, selector: string) =>
@@ -95,13 +94,13 @@ for (const width of WIDTHS) {
       expect(pad.strip).toBeCloseTo(pad.section * 0.4, 1);
 
       // Each top-level <section> of <main> paints its bands itself (.band) or via inner .band divs (CTA).
-      // Strips (--strip-pad) per the CSS: .trust (TrustRow), .logos (LogoRow), .contact (CtaBand).
+      // Strips (--strip-pad) per the CSS: .trust (TrustRow), .logos (LogoRow). The cyan .contact strip was removed.
       // Hero is excluded on purpose (it sets its own photo-led padding).
       const found = await page.evaluate(() =>
         [...document.querySelectorAll('main > section')].map((s) => ({
           name: s.id || s.className.replace(/\bband(-\w+)?\b/g, '').trim() || s.getAttribute('aria-labelledby') || '?',
           surfaces: (s.classList.contains('band') ? [s] : [...s.querySelectorAll(':scope > .band')]).map((b) => ({
-            strip: b.classList.contains('trust') || b.classList.contains('logos') || b.classList.contains('contact'),
+            strip: b.classList.contains('trust') || b.classList.contains('logos'),
             stage: b.classList.contains('stage'),
             hero: b.classList.contains('hero'),
             top: parseFloat(getComputedStyle(b).paddingTop),
@@ -127,7 +126,7 @@ for (const width of WIDTHS) {
           }
         }
       }
-      expect(strips, 'trust + logos + CTA contact').toBe(3);
+      expect(strips, 'trust + logos').toBe(2);
       expect(regular, 'services, stats, how, pricing, reviews, faq' + (width < 1024 ? '' : ' + CTA stage')).toBe(
         width < 1024 ? 6 : 7,
       );

@@ -40,6 +40,7 @@
   --gutter: clamp(16px, 4vw, 40px);
   --section-pad: clamp(56px, 7vw, 96px);
   --strip-pad: calc(var(--section-pad) * 0.4);
+  --footer-pad: clamp(48px, 4vw, 56px);  /* footer top: tighter than a section, it only holds links */
   --head-gap: clamp(32px, 4vw, 48px);  /* heading block to its content */
   --grid-gap: clamp(16px, 2vw, 24px);
   --quote-bar-height: 80px;

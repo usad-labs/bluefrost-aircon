@@ -14,45 +14,36 @@ import roomPhoto from '../assets/v3/cta-room.jpg';
       <p>Call or message us for a quote. We usually reply within the hour.</p>
       <div class="btn-row">
         <a class="btn btn-primary" href={site.phoneHref}><Icon name="phone" size={20} /> {site.quoteLabel}</a>
+        <a class="btn btn-secondary" href={site.messengerUrl} target="_blank" rel="noopener" aria-label={site.messengerAriaLabel}>
+          <Icon name="message" size={20} /> {site.messengerLabel}
+        </a>
       </div>
-    </div>
-  </div>
-  <!-- contact details: the cyan accent set, so the dark band above keeps its one action colour -->
-  <div class="band band-accent contact">
-    <div class="container contact-inner">
-      <a class="tel" href={site.phoneHref}><Icon name="phone" size={24} /> {site.phoneDisplay}</a>
-      <p>{site.hours} <span class="nb">(sample)</span></p>
-      <a class="btn btn-secondary" href={site.messengerUrl} target="_blank" rel="noopener" aria-label={site.messengerAriaLabel}>
-        <Icon name="message" size={20} /> {site.messengerLabel}
-      </a>
+      <p class="alt">or call <a href={site.phoneHref}>{site.phoneDisplay}</a> · <span class="nb">{site.hours} (sample)</span></p>
     </div>
   </div>
 </section>
 
 <style>
-  .stage { position: relative; isolation: isolate; overflow: hidden; padding-block: 220px var(--section-pad); }
+  /* Bottom is a strip pad: the footer below is the same navy and adds its own top padding, so a full section pad would leave an empty band. */
+  .stage { position: relative; isolation: isolate; overflow: hidden; padding-block: 220px var(--strip-pad); }
   /* Phones: the family photo fills the top 300px and fades into navy; the text sits on the faded part. */
   .bg-photo { inset: 0 0 auto 0; height: 300px; --scrim: linear-gradient(180deg, rgb(11 21 48 / 0.15) 0%, rgb(11 21 48 / 0.5) 45%, rgb(11 21 48 / 0.92) 80%, var(--navy) 100%); }
   .bg-photo :global(img) { object-position: 85% 50%; }
   .cta { display: grid; gap: var(--space-4); justify-items: start; }
   .cta h2 { font-size: var(--t-display); letter-spacing: -0.035em; line-height: 1.02; max-width: 12ch; }
   .cta p { font-size: var(--t-h3); font-weight: 500; max-width: 30rem; }
+  /* Buttons stack at every size (equal width); this beats the global row layout from 560px. */
   .cta .btn-row { margin-top: var(--space-2); }
+  @media (max-width: 599px) { .cta .btn-row { flex-direction: column; } }
+  .cta .alt { font-size: var(--t-body); max-width: none; }
+  /* 44px tap area, but the negative margin keeps the line box at text height so wrapped lines stay evenly spaced. */
+  .cta .alt a { display: inline-flex; align-items: center; min-height: 44px; margin-block: -10px; color: inherit; font-weight: 700; text-underline-offset: 3px; }
   .nb { white-space: nowrap; }
-
-  .contact { padding-block: var(--strip-pad); }
-  .contact-inner { display: grid; gap: var(--space-3); justify-items: start; align-items: center; }
-  .tel { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; font-size: var(--t-h3); font-weight: 800; white-space: nowrap; }
-  .contact p { font-weight: 600; }
-
-  @media (min-width: 768px) {
-    .contact-inner { grid-template-columns: auto 1fr auto; gap: var(--space-8); }
-  }
 
   /* The headline sits on the dark left of the photo, so the photo only goes full bleed where the text is narrow
      compared with the screen (1024px and up); below that it stacks like the phone layout. */
   @media (min-width: 1024px) {
-    .stage { padding-block: var(--section-pad); }
+    .stage { padding-block: var(--section-pad) var(--strip-pad); }
     .bg-photo { inset: 0; height: auto; --scrim: linear-gradient(90deg, var(--navy) 0%, rgb(11 21 48 / 0.94) 32%, rgb(11 21 48 / 0.7) 46%, rgb(11 21 48 / 0.25) 60%, rgb(11 21 48 / 0) 74%); }
     .bg-photo :global(img) { object-position: 50% 50%; }
     .cta h2 { font-size: clamp(3.5rem, 6.4vw, 5.5rem); }
