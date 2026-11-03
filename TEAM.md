@@ -118,5 +118,6 @@ Plugins: ponytail is on for every subagent (its SubagentStart hook, mode `full`)
 | 2026-11-03 | 07-release | lead | ✋ Gate 4 yes → pre-push checks (1 noreply author, gitleaks clean, 0 tool files, 0 private paths) → public repo usad-labs/bluefrost-aircon created and main pushed | n/a |
 | 2026-11-03 | 07-release | user | **Workflow change:** Bugsy re-checked every design iteration (8 Bugsy runs, about 600k tokens). New loop: Bolt → light gate → preview → user review, iterate without Bugsy; Bugsy runs once when the user is satisfied. Playwright moved out of the auto gate. Updated in /kickoff step 5 + 6 | n/a |
 | 2026-11-03 | 07-release | user + lead | Vercel import by the user → live at https://bluefrost-aircon.vercel.app (content verified, not just 200). Lead set `site` in astro.config (Bolt file, one line, logged) so og:image is absolute; live link added to README | n/a |
+| 2026-11-03 | 07-release | lead | Live Lighthouse mobile (https://bluefrost-aircon.vercel.app): 99/100/100/100, LCP 1.2 s, CLS 0, 132 KB; og:image absolute on live. **Stage 1 done.** | n/a |
 
 **Token tracking:** subagent tokens come from each task notification. Lead tokens: run `/caveman-stats` or `explain-usage` at the end of each session and paste the total here.
