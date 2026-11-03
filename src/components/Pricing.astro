@@ -12,7 +12,7 @@ import { site } from '../data/site';
     </div>
     <ul class="grid">
       {packages.map((p) => (
-        <li class:list={['card', { popular: p.popular }]}>
+        <li class:list={['card', p.popular ? 'card-accent' : 'card-dark', { popular: p.popular }]}>
           {p.popular && <p class="badge">Most popular</p>}
           <h3>{p.name}</h3>
           <p class="price"><span class="from">from</span> <strong>{formatPeso(p.fromPrice)}</strong> <span class="from">per unit</span></p>
@@ -32,16 +32,16 @@ import { site } from '../data/site';
 </section>
 
 <style>
-  .grid > li { display: grid; gap: var(--space-3); align-content: start; position: relative; }
-  .popular { border: 2px solid var(--orange); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35); }
-  .badge { justify-self: start; padding: var(--space-1) var(--space-3); border-radius: var(--radius-pill); background: var(--orange); color: var(--navy); font-weight: 700; font-size: 0.875rem; }
+  .grid { gap: var(--space-4); }
+  .grid > li { display: grid; gap: var(--space-3); align-content: start; padding: var(--space-8) var(--space-6); }
+  .badge { justify-self: start; padding: var(--space-1) var(--space-3); border-radius: var(--radius-pill); background: var(--navy); color: var(--cyan); font-weight: 700; font-size: var(--t-small); }
   .price { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2); }
-  .price strong { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
+  .price strong { font-size: var(--t-h2); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; font-variant-numeric: tabular-nums; }
   .from { color: var(--muted); }
-  .units { color: var(--muted); font-size: 0.9375rem; }
-  .includes { display: grid; gap: var(--space-2); margin-block: var(--space-2) var(--space-4); }
+  .units { color: var(--muted); font-size: var(--t-small); }
+  .includes { display: grid; gap: var(--space-2); margin-block: var(--space-2) var(--space-6); }
   .includes li { display: flex; gap: var(--space-2); align-items: flex-start; }
-  .includes :global(svg) { flex: none; margin-top: 2px; color: var(--blue-800); }
+  .includes :global(svg) { flex: none; margin-top: 2px; color: var(--accent); }
   .grid > li > .btn { align-self: end; }
   .unit-note { margin-top: var(--space-8); max-width: 44rem; color: var(--muted); }
 </style>

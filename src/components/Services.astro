@@ -1,6 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import { services } from '../data/services';
+import { site } from '../data/site';
 ---
 <section class="band band-light" id="services" aria-labelledby="services-title">
   <div class="container">
@@ -8,22 +9,41 @@ import { services } from '../data/services';
       <h2 id="services-title">Everything your aircon needs</h2>
       <p>Four services, one team, one clear price before we start.</p>
     </div>
-    <ul class="grid">
-      {services.map((s) => (
-        <li class="card">
-          <span class="icon"><Icon name={s.icon} /></span>
+    <ol>
+      {services.map((s, i) => (
+        <li>
+          <span class="num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
           <h3>{s.name}</h3>
-          <p class="benefit">{s.benefit}</p>
-          <p class="detail">{s.detail}</p>
+          <div class="text">
+            <p class="benefit">{s.benefit}</p>
+            <p class="detail">{s.detail}</p>
+          </div>
         </li>
       ))}
-    </ul>
+    </ol>
+    <div class="ask">
+      <p>Not sure which one you need?</p>
+      <a class="btn btn-secondary" href={site.messengerUrl} target="_blank" rel="noopener" aria-label={site.messengerAriaLabel}>
+        <Icon name="message" size={20} /> {site.messengerLabel}
+      </a>
+    </div>
   </div>
 </section>
 
 <style>
-  li { display: grid; gap: var(--space-2); align-content: start; }
-  .icon { display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: var(--space-2); border-radius: 50%; background: var(--blue-100); color: var(--blue-800); }
+  ol { border-top: 2px solid var(--fg); }
+  li { display: grid; grid-template-columns: auto 1fr; gap: var(--space-2) var(--space-4); padding-block: var(--space-6); border-bottom: 1px solid var(--line); }
+  .num { grid-row: span 2; font-size: var(--t-h2); font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
+  h3 { align-self: center; }
+  .text { grid-column: 2; display: grid; gap: var(--space-2); max-width: 36rem; }
   .benefit { font-weight: 600; }
   .detail { color: var(--muted); }
+  .ask { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-6); margin-top: var(--space-8); font-weight: 600; }
+
+  @media (min-width: 768px) {
+    li { grid-template-columns: 5rem minmax(0, 5fr) minmax(0, 7fr); align-items: baseline; gap: var(--space-6); padding-block: var(--space-8); }
+    .num { grid-row: auto; }
+    h3 { font-size: var(--t-h2); letter-spacing: -0.02em; line-height: 1.1; }
+    .text { grid-column: auto; }
+  }
 </style>

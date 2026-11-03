@@ -1,18 +1,17 @@
-/* Design tokens from design-system/bluefrost-aircon/MASTER.md ("BlueFrost overrides" win). */
+/* "Bold Frost" tokens (mirrored in design-system/bluefrost-aircon/MASTER.md, "BlueFrost overrides"). */
 :root {
   --navy: #0b1530;
-  --blue-900: #1e3a8a;
-  --blue-800: #1e40af;
-  --blue-300: #93c5fd;
-  --blue-200: #bfdbfe;
-  --blue-100: #dbeafe;
-  --blue-50: #eff6ff;
-  --orange: #ea580c;
-  --orange-hover: #f97316; /* hover bg: dark text 6.44:1 (was #c2410c, 3.48:1 fail) */
-  --orange-soft: #fdba74;
-  --slate: #475569;
-  --star: #b45309;
+  --navy-2: #14224a;      /* surface on navy */
+  --navy-hover: #1c2f66;  /* hover bg for navy buttons (white text 12.7:1) */
+  --cyan: #67e8f9;        /* icy cyan: the one accent; CTA bg with navy text (12.4:1) */
+  --cyan-hover: #a5f3fc;  /* CTA hover bg with navy text (14.5:1) */
+  --cyan-deep: #0e7490;   /* cyan accent/links on light (4.9:1 frost, 5.4:1 white) */
+  --frost: #e8f8fc;
   --white: #ffffff;
+  --ink-muted: #3d4d66;   /* muted text on light (7.9:1 on frost) */
+  --ink-muted-dark: #b4c6e4; /* muted text on navy (10.4:1) */
+  --line-light: #b7dde7;
+  --line-dark: rgba(180, 198, 228, 0.28);
 
   --space-1: 4px;
   --space-2: 8px;
@@ -22,12 +21,20 @@
   --space-8: 32px;
   --space-12: 48px;
   --space-16: 64px;
+  --space-24: 96px;
 
-  --radius-card: 12px;
+  /* type scale: five sizes only */
+  --t-display: clamp(2.5rem, 12vw, 5.5rem);
+  --t-h2: clamp(1.875rem, 5vw, 3rem);
+  --t-h3: 1.25rem;
+  --t-body: 1rem;
+  --t-small: 0.875rem;
+
+  --radius-card: 16px;
   --radius-pill: 999px;
   --max-width: 1120px;
   --gutter: 16px;
-  --section-pad: 48px;
+  --section-pad: 64px;
   --quote-bar-height: 80px;
 
   --font: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -36,6 +43,6 @@
 @media (min-width: 768px) {
   :root {
     --gutter: 24px;
-    --section-pad: 64px;
+    --section-pad: 96px;
   }
 }

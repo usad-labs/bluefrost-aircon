@@ -2,23 +2,29 @@
 import { clientLogos } from '../data/site';
 ---
 <section class="band band-white logos" aria-labelledby="logos-title">
-  <div class="container">
-    <h2 id="logos-title">Trusted by homes and small businesses across Cavite</h2>
+  <div class="container wrap">
+    <div>
+      <h2 id="logos-title">Trusted by homes and small businesses across Cavite</h2>
+      <p class="note">Sample client names, invented for this demo.</p>
+    </div>
     <ul>
       {clientLogos.map((name, i) => <li class={`w${i % 3}`}>{name}</li>)}
     </ul>
-    <p class="note">Sample client names, invented for this demo.</p>
   </div>
 </section>
 
 <style>
-  .logos { padding-block: var(--space-8); border-top: 1px solid var(--blue-200); }
-  h2 { font-size: 1rem; font-weight: 600; letter-spacing: 0; color: var(--muted); text-align: center; }
-  ul { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-4) var(--space-8); margin-top: var(--space-6); }
-  /* Greyscale text wordmarks; three styles so they read as different brands. */
-  li { color: var(--slate); font-size: 1.125rem; }
+  .logos { padding-block: var(--space-12); }
+  .wrap { display: grid; gap: var(--space-6); }
+  h2 { font-size: var(--t-h3); font-weight: 700; letter-spacing: -0.01em; line-height: 1.25; max-width: 24rem; }
+  ul { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-8); align-content: start; }
+  /* Plain text wordmarks; three styles so they read as different brands. */
+  li { color: var(--muted); font-size: var(--t-h3); }
   .w0 { font-weight: 800; letter-spacing: -0.03em; }
-  .w1 { font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.9375rem; }
+  .w1 { font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; font-size: var(--t-body); }
   .w2 { font-weight: 700; font-style: italic; }
-  .note { margin-top: var(--space-4); text-align: center; font-size: 0.875rem; color: var(--muted); }
+  .note { margin-top: var(--space-2); font-size: var(--t-small); color: var(--muted); }
+  @media (min-width: 900px) {
+    .wrap { grid-template-columns: 5fr 7fr; gap: var(--space-12); align-items: center; }
+  }
 </style>

@@ -2,50 +2,59 @@
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
 import { site } from '../data/site';
-// Swap the hero photo here: change this one import to the chosen photo (e.g. ../assets/hero.jpg),
-// update the alt text below and add its credit to CREDITS.md.
+// Swap the hero photo here, in this one file: change the import to the chosen photo (e.g. ../assets/hero.jpg)
+// and the alt text, then add its credit to CREDITS.md. The slot crops any photo with object-fit: cover.
 import heroImage from '../assets/hero-placeholder.svg';
+const heroAlt = 'Placeholder illustration of a wall-mounted air conditioner blowing cool air';
 ---
-<section class="band band-light hero" aria-labelledby="hero-title">
-  <div class="container hero-grid">
+<section class="band band-dark hero" aria-labelledby="hero-title">
+  <div class="hero-grid">
     <div class="copy">
-      <h1 id="hero-title">Aircon weak, noisy or leaking? We fix it, usually the same day.</h1>
-      <p class="lead">Trained technicians, prices quoted before we start, and a 90-day service warranty across Cavite.</p>
+      <h1 id="hero-title">Aircon weak? We fix it.</h1>
+      <p class="lead">Noisy, leaking or barely cooling? Most visits finish the same day, with the price agreed first and a <span class="nb">90-day</span> warranty.</p>
       <div class="btn-row">
         <a class="btn btn-primary" href={site.phoneHref}><Icon name="phone" size={20} /> {site.quoteLabel}</a>
-        <a class="btn btn-secondary" href={site.messengerUrl} target="_blank" rel="noopener" aria-label={site.messengerAriaLabel}>
+        <a class="btn btn-secondary msg" href={site.messengerUrl} target="_blank" rel="noopener" aria-label={site.messengerAriaLabel}>
           <Icon name="message" size={20} /> {site.messengerLabel}
         </a>
       </div>
-      <p class="phone-line">Or call <a href={site.phoneHref}>{site.phoneDisplay}</a> (sample number)</p>
     </div>
     <div class="photo">
-      <Image
-        src={heroImage}
-        alt="Placeholder illustration of a wall-mounted air conditioner blowing cool air"
-        width={1200}
-        height={900}
-        sizes="(min-width: 900px) 520px, 100vw"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
+      <Image src={heroImage} alt={heroAlt} width={1200} height={900} sizes="(min-width: 900px) 50vw, 100vw" loading="eager" fetchpriority="high" decoding="async" />
     </div>
   </div>
+  <!-- cold-air wave 1 of 2: the curved edge into the next section -->
+  <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path d="M0 44C220 -8 440 -8 700 38S1180 92 1440 30V80H0Z" />
+  </svg>
 </section>
 
 <style>
-  .hero { padding-block: var(--space-8) var(--section-pad); }
-  .hero-grid { display: grid; gap: var(--space-8); align-items: center; }
-  .copy { display: grid; gap: var(--space-6); justify-items: start; }
-  .lead { font-size: 1.125rem; color: var(--muted); max-width: 34rem; }
-  .copy .btn-row { width: 100%; }
-  .phone-line { color: var(--muted); }
-  .phone-line a { display: inline-block; padding-block: var(--space-3); font-weight: 600; color: var(--link); }
-  .photo img { width: 100%; height: auto; border-radius: var(--radius-card); border: 1px solid var(--blue-200); }
+  .hero { container-type: inline-size; padding-block: var(--space-6) 0; }
+  .hero-grid { display: grid; gap: var(--space-8); padding-inline: var(--gutter); padding-bottom: var(--space-8); }
+  .copy { display: grid; gap: var(--space-6); align-content: center; }
+  .nb { white-space: nowrap; }
+  .lead { font-size: var(--t-h3); font-weight: 500; line-height: 1.5; color: var(--muted); max-width: 34rem; }
+  .copy .btn-row { gap: var(--space-2); }
+  .photo { aspect-ratio: 4 / 3; border-radius: 24px; overflow: hidden; background: var(--navy-2); }
+  .photo :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .wave { display: block; width: 100%; height: clamp(32px, 6vw, 72px); margin-bottom: -1px; fill: var(--frost); }
+
+  /* Phones: one big button; "Message us" becomes a plain link (the sticky bar still has both). */
+  @media (max-width: 767px) {
+    .msg { min-height: 44px; padding-inline: 0; border-color: transparent; color: var(--link); text-decoration: underline; text-underline-offset: 4px; }
+    .msg:hover { background: transparent; }
+  }
 
   @media (min-width: 900px) {
-    .hero { padding-block: var(--section-pad); }
-    .hero-grid { grid-template-columns: 1.1fr 1fr; gap: var(--space-12); }
+    .hero { padding-top: var(--space-12); }
+    /* left edge lines up with the .container used by every other section; the photo runs off the right edge */
+    .hero-grid {
+      --edge: max(var(--gutter), calc((100cqw - var(--max-width)) / 2));
+      grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: var(--space-12);
+      padding-inline: var(--edge) 0; padding-bottom: var(--space-16);
+    }
+    .hero h1 { font-size: clamp(3rem, 6.2vw, 5rem); }
+    .photo { aspect-ratio: 4 / 5; border-radius: 48px 0 0 48px; }
   }
 </style>

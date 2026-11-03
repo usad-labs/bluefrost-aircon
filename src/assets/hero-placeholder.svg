@@ -1,21 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
-  <rect width="1200" height="900" fill="#DBEAFE"/>
-  <rect y="640" width="1200" height="260" fill="#BFDBFE"/>
-  <!-- wall-mounted split unit -->
-  <rect x="190" y="190" width="820" height="230" rx="40" fill="#FFFFFF" stroke="#1E40AF" stroke-width="8"/>
-  <rect x="230" y="235" width="740" height="40" rx="20" fill="#EFF6FF" stroke="#1E40AF" stroke-width="4"/>
-  <rect x="230" y="355" width="740" height="26" rx="13" fill="#93C5FD" stroke="#1E40AF" stroke-width="4"/>
-  <circle cx="910" cy="300" r="12" fill="#EA580C"/>
+  <rect width="1200" height="900" fill="#BDEFF9"/>
+  <rect y="640" width="1200" height="260" fill="#8FD9EA"/>
+  <!-- wall-mounted split unit, centred so a portrait or landscape crop keeps it -->
+  <rect x="250" y="150" width="700" height="220" rx="44" fill="#FFFFFF"/>
+  <rect x="290" y="192" width="620" height="40" rx="20" fill="#DCF5FB"/>
+  <rect x="290" y="300" width="620" height="28" rx="14" fill="#0B1530"/>
+  <circle cx="870" cy="262" r="11" fill="#0E7490"/>
   <!-- cool air -->
-  <g fill="none" stroke="#1E40AF" stroke-width="10" stroke-linecap="round" opacity="0.55">
-    <path d="M300 450c30 50-30 90 0 140s-20 80 0 120"/>
-    <path d="M440 450c30 50-30 90 0 140s-20 80 0 120"/>
-    <path d="M580 450c30 50-30 90 0 140s-20 80 0 120"/>
-    <path d="M720 450c30 50-30 90 0 140s-20 80 0 120"/>
-    <path d="M860 450c30 50-30 90 0 140s-20 80 0 120"/>
-  </g>
-  <!-- snowflake -->
-  <g fill="none" stroke="#1E3A8A" stroke-width="12" stroke-linecap="round" transform="translate(960 700)">
-    <path d="M0-70v140M-60-35l120 70M60-35l-120 70"/>
+  <g fill="none" stroke="#0B1530" stroke-width="12" stroke-linecap="round" opacity="0.55">
+    <path d="M340 410c30 50-30 90 0 140s-20 80 0 120"/>
+    <path d="M470 410c30 50-30 90 0 140s-20 80 0 120"/>
+    <path d="M600 410c30 50-30 90 0 140s-20 80 0 120"/>
+    <path d="M730 410c30 50-30 90 0 140s-20 80 0 120"/>
+    <path d="M860 410c30 50-30 90 0 140s-20 80 0 120"/>
   </g>
 </svg>

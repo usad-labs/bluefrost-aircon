@@ -10,21 +10,24 @@
 
 | Topic | Rule |
 |---|---|
-| Fonts | **Plus Jakarta Sans** (variable, latin subset, self-hosted woff2, `font-display: swap`, preloaded) for headings and body. Replaces the generated EB Garamond + Lato (a legal/formal mood, 2 families, Google CDN). Headings 700, letter-spacing -0.02em; body 400/500, 16px min, line-height 1.6 |
-| Light sections | bg `#EFF6FF` (alternate `#FFFFFF`), text `#1E3A8A`, muted `#475569`, cards `#FFFFFF` with 1px `#BFDBFE` border |
-| Dark sections | bg `#0B1530` (deep navy), text `#FFFFFF`, muted `#BFDBFE`, links `#93C5FD`, icon/accent `#EA580C` |
-| Primary CTA | bg `#EA580C`, **text `#0B1530`** (5.07:1). Never white on orange (3.56:1 fails). Hover: `#F97316` bg (lighter), same dark text (6.44:1). `#C2410C` with dark text is 3.48:1 and fails |
-| Secondary CTA | outline `#1E40AF` on light (text `#1E40AF`); on dark, white outline + white text |
-| Focus ring | 3px solid `#1E40AF` on light, `#FDBA74` on dark; 2px offset; never removed |
-| Stars | `#B45309` on white (5.02:1); always paired with text "4.9 out of 5" / `aria-label` |
-| Motion | **No JS animation, no GSAP, no logo carousel.** CSS hover transitions 150–200 ms only; all removed under `prefers-reduced-motion`. The client logos are a static row |
-| Effects | Flat: no gradients; one soft shadow allowed on the highlighted pricing card only |
-| Radius / spacing | radius 12px cards, 999px buttons; 4/8/12/16/24/32/48/64 spacing scale; section padding 64px desktop / 48px mobile; content max-width 1120px; 16px side gutter on phones |
-| Tap targets | ≥ 44×44 px; sticky bottom CTA bar on phones < 768px |
-| Icons | Lucide SVG, 24px, stroke 2, `currentColor` |
-| Ignore below | the "Low-friction form" and "Contact Sales" pattern notes (no form in stage 1), the GSAP page-transition snippet, the Google Fonts `@import` |
+| Direction | **Bold Frost** (2026-11-03): deep navy + icy cyan, one accent, no warm colour. Replaces the orange/blue-900 palette |
+| Fonts | **Plus Jakarta Sans** (variable, latin subset, self-hosted woff2, `font-display: swap`, preloaded). Five sizes: display `clamp(2.5rem,12vw,5rem)` (hero >= 900px: `clamp(3rem,6.2vw,5rem)`) 800 / h2 `clamp(1.875rem,5vw,3rem)` 800 / h3 and lead 1.25rem / body 1rem / small 0.875rem. Body line-height 1.6 |
+| Tokens | navy `#0B1530`, navy-2 `#14224A` (surface on dark), cyan `#67E8F9`, cyan-hover `#A5F3FC`, cyan-deep `#0E7490` (accent on light), frost `#E8F8FC`, white, ink-muted `#3D4D66`, ink-muted-dark `#B4C6E4`, navy-hover `#1C2F66` |
+| Bands | dark: navy bg, white text, muted `#B4C6E4`, link/accent cyan. light: frost bg (white for `band-white`), navy text, muted `#3D4D66`, link/accent `#0E7490`. accent (CTA band): cyan bg, navy text. Class names `band-dark/light/white/accent` are a test contract |
+| Primary CTA | on dark: bg cyan, text navy (12.4:1); hover `#A5F3FC` (14.5:1). On light/cyan/popular card: bg navy, text white (18:1); hover `#1C2F66` (12.7:1) |
+| Secondary CTA | outline in the band's ink (white on dark, navy on light/cyan); hover = 14% tint of the outline colour. On phones the hero one is a plain underlined link |
+| Focus ring | 3px solid, 2px offset: cyan on dark, navy on light and cyan |
+| Stars | accent colour (`#0E7490` on white, cyan on navy), always paired with text "N out of 5" / `aria-label` |
+| Motion | **No JS.** CSS colour transitions 150 ms, press `scale(0.97)`, hover in `(hover: hover)`; all removed under `prefers-reduced-motion`. Logos are a static row |
+| Effects | Flat: no gradients, no shadows (borders only). Cold-air wave SVG used twice: hero bottom edge, CTA band line (>= 768px) |
+| Radius / spacing | cards 16px, hero photo 24px (48px left corners on desktop), buttons 999px; 4/8/12/16/24/32/48/64/96 scale; section padding 64px mobile / 96px desktop; max-width 1120px; 16/24px gutters |
+| Layouts | hero split + bleed photo / trust 2x2 to 4 strip / logos label-left / services numbered rows / stats 2x2 to 4 / how-it-works head-left + timeline / pricing 3 cards (popular = cyan) / reviews 1 big + 2 / FAQ head-left + list-right / CTA band |
+| Tap targets | >= 44x44 px; sticky bottom CTA bar on phones < 768px |
+| Icons | Own small SVG set, 24px, stroke 2, `currentColor` |
+| Logo | `src/assets/logo-mark.svg` (copy at `public/favicon.svg`) + wordmark in `src/components/Logo.astro`: "Blue" 800 + "Frost" 500 in the accent |
+| Ignore below | the generated palette, "Low-friction form" and "Contact Sales" notes, the GSAP snippet, the Google Fonts `@import` |
 
-Contrast check: all 15 pairs measured ≥ 4.5:1 (script in the lead's scratchpad; results in TEAM.md log).
+Contrast check (Bold Frost, computed 2026-11-03): all pairs listed in Tokens measured ≥ 4.5:1 (script in the lead's scratchpad; results in TEAM.md log).
 
 ---
 

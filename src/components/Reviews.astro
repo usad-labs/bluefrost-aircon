@@ -9,8 +9,8 @@ import { reviews, initials } from '../data/reviews';
       <p>Sample reviews, invented for this demo.</p>
     </div>
     <ul class="grid">
-      {reviews.map((r) => (
-        <li class="card">
+      {reviews.map((r, i) => (
+        <li class:list={['card', { 'card-dark': i === 0, featured: i === 0 }]}>
           <figure>
             <p class="rating" role="img" aria-label={`Rated ${r.rating} out of 5 stars`}>
               {[1, 2, 3, 4, 5].map((n) => <Icon name="star" size={20} filled={n <= r.rating} />)}
@@ -29,11 +29,21 @@ import { reviews, initials } from '../data/reviews';
 </section>
 
 <style>
-  figure { display: grid; gap: var(--space-4); margin: 0; }
-  .rating { display: flex; align-items: center; gap: 2px; color: var(--star); }
-  .rating-text { margin-left: var(--space-2); font-size: 0.875rem; font-weight: 600; color: var(--muted); }
+  .grid { gap: var(--space-4); }
+  figure { display: grid; gap: var(--space-4); margin: 0; height: 100%; align-content: space-between; }
+  .rating { display: flex; align-items: center; gap: 2px; color: var(--accent); }
+  .rating-text { margin-left: var(--space-2); font-size: var(--t-small); font-weight: 600; color: var(--muted); }
   blockquote { margin: 0; }
+  .featured blockquote { font-size: var(--t-h3); font-weight: 600; line-height: 1.4; }
+  .featured { padding: var(--space-8) var(--space-6); }
   figcaption { display: flex; align-items: center; gap: var(--space-3); }
-  .avatar { display: grid; place-items: center; flex: none; width: 44px; height: 44px; border-radius: 50%; background: var(--blue-900); color: var(--white); font-weight: 700; }
-  .town { color: var(--muted); font-size: 0.9375rem; }
+  .avatar { display: grid; place-items: center; flex: none; width: 44px; height: 44px; border-radius: 50%; background: var(--navy); color: var(--cyan); font-weight: 700; }
+  .featured .avatar { background: var(--cyan); color: var(--navy); }
+  .town { color: var(--muted); font-size: var(--t-small); }
+  /* one big quote on the left, two smaller on the right: not a row of equal cards */
+  @media (min-width: 900px) {
+    .grid { grid-template-columns: 7fr 5fr; }
+    .featured { grid-row: span 2; padding: var(--space-12); }
+    .featured blockquote { font-size: var(--t-h2); line-height: 1.2; letter-spacing: -0.02em; }
+  }
 </style>

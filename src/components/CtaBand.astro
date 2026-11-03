@@ -2,12 +2,17 @@
 import Icon from './Icon.astro';
 import { site } from '../data/site';
 ---
-<section class="band band-accent" aria-labelledby="cta-title">
+<section class="band band-accent cta-band" aria-labelledby="cta-title">
+  <!-- cold-air wave 2 of 2: a loose line behind the right side of the band -->
+  <svg class="wave" viewBox="0 0 600 200" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" focusable="false">
+    <path d="M-20 150C80 60 160 60 260 110S440 160 620 50" />
+    <path d="M-20 190C80 100 160 100 260 150S440 200 620 90" />
+  </svg>
   <div class="container cta">
     <h2 id="cta-title">Ready for a cold room?</h2>
     <p>Call or message us for a quote. We usually reply within the hour.</p>
     <div class="btn-row">
-      <a class="btn dark" href={site.phoneHref}><Icon name="phone" size={20} /> {site.quoteLabel}</a>
+      <a class="btn btn-primary" href={site.phoneHref}><Icon name="phone" size={20} /> {site.quoteLabel}</a>
       <a class="btn btn-secondary" href={site.messengerUrl} target="_blank" rel="noopener" aria-label={site.messengerAriaLabel}>
         <Icon name="message" size={20} /> {site.messengerLabel}
       </a>
@@ -16,7 +21,10 @@ import { site } from '../data/site';
 </section>
 
 <style>
-  .cta { display: grid; gap: var(--space-4); justify-items: start; }
-  .dark { background: var(--navy); color: var(--white); }
-  .dark:hover { background: var(--blue-900); }
+  .cta-band { position: relative; overflow: hidden; }
+  .wave { display: none; position: absolute; inset: auto 0 0 auto; width: min(100%, 720px); height: 100%; fill: none; stroke: var(--navy); stroke-width: 3; stroke-linecap: round; opacity: 0.18; pointer-events: none; }
+  .cta { position: relative; display: grid; gap: var(--space-6); justify-items: start; }
+  .cta h2 { font-size: var(--t-display); letter-spacing: -0.035em; line-height: 1.02; max-width: 12ch; }
+  @media (min-width: 768px) { .wave { display: block; } }
+  .cta p { font-size: var(--t-h3); font-weight: 500; max-width: 30rem; }
 </style>

@@ -1,13 +1,10 @@
 ---
-import Icon from './Icon.astro';
+import Logo from './Logo.astro';
 import { site } from '../data/site';
 ---
-<header class="top band-white">
+<header class="top band-dark">
   <div class="container top-inner">
-    <a class="logo" href="/" aria-label={`${site.name}, home`}>
-      <Icon name="snowflake" size={28} />
-      <span>{site.name}</span>
-    </a>
+    <a class="logo-link" href="/" aria-label={`${site.name}, home`}><Logo /></a>
     <div class="desktop-cta">
       <a class="phone" href={site.phoneHref}>{site.phoneDisplay}</a>
       <a class="btn btn-primary" href={site.phoneHref}>{site.quoteLabel}</a>
@@ -16,9 +13,9 @@ import { site } from '../data/site';
 </header>
 
 <style>
-  .top { background: var(--bg); color: var(--fg); border-bottom: 1px solid var(--blue-200); }
-  .top-inner { display: flex; align-items: center; justify-content: space-between; min-height: 64px; }
-  .logo { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; font-weight: 700; font-size: 1.125rem; letter-spacing: -0.02em; text-decoration: none; color: var(--blue-800); }
+  .top { padding-block: 0; }
+  .top-inner { display: flex; align-items: center; justify-content: space-between; min-height: 72px; }
+  .logo-link { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
   .desktop-cta { display: none; align-items: center; gap: var(--space-6); }
   .phone { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; text-decoration: none; }
   .phone:hover { text-decoration: underline; }

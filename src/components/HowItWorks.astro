@@ -6,11 +6,12 @@ const steps = [
 ];
 ---
 <section class="band band-white" aria-labelledby="how-title">
-  <div class="container">
+  <div class="container how">
     <div class="section-head">
       <h2 id="how-title">How it works</h2>
+      <p>Three steps from a warm room to a cold one.</p>
     </div>
-    <ol class="grid">
+    <ol>
       {steps.map((s) => (
         <li>
           <h3>{s.title}</h3>
@@ -22,11 +23,18 @@ const steps = [
 </section>
 
 <style>
-  ol { counter-reset: step; }
-  li { counter-increment: step; display: grid; gap: var(--space-2); align-content: start; }
+  .how { display: grid; gap: var(--space-8); }
+  .section-head { margin-bottom: 0; }
+  /* a vertical line links the steps: the order matters here */
+  ol { counter-reset: step; display: grid; gap: var(--space-8); position: relative; }
+  ol::before { content: ''; position: absolute; left: 21px; top: 22px; bottom: 22px; width: 2px; background: var(--line); }
+  li { counter-increment: step; display: grid; gap: var(--space-2); position: relative; padding-left: 72px; }
   li::before {
-    content: counter(step); display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: var(--space-2);
-    border-radius: 50%; background: var(--blue-900); color: var(--white); font-weight: 700; font-size: 1.125rem;
+    content: counter(step); position: absolute; left: 0; top: -4px; display: grid; place-items: center; width: 44px; height: 44px;
+    border-radius: 50%; background: var(--navy); color: var(--cyan); font-weight: 800; font-size: var(--t-h3);
   }
-  p { color: var(--muted); }
+  p { color: var(--muted); max-width: 36rem; }
+  @media (min-width: 900px) {
+    .how { grid-template-columns: 5fr 7fr; gap: var(--space-12); }
+  }
 </style>

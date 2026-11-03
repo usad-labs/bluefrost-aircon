@@ -1,12 +1,13 @@
 ---
+import Logo from './Logo.astro';
 import { site } from '../data/site';
 ---
 <footer class="band band-dark">
   <div class="container">
     <div class="cols">
       <div>
-        <h2>{site.name}</h2>
-        <p>{site.tagline}</p>
+        <Logo />
+        <p class="tag">{site.tagline}</p>
       </div>
       <div>
         <h3>Contact (sample)</h3>
@@ -25,10 +26,10 @@ import { site } from '../data/site';
 
 <style>
   .cols { display: grid; gap: var(--space-8); grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
-  h2 { font-size: 1.5rem; }
-  h3 { font-size: 1rem; margin-bottom: var(--space-2); }
+  .tag { margin-top: var(--space-3); }
+  h3 { font-size: var(--t-body); font-weight: 700; margin-bottom: var(--space-2); }
   p { color: var(--muted); }
   a { display: inline-block; padding-block: var(--space-2); color: var(--link); font-weight: 600; }
-  .fine { margin-top: var(--space-4); font-size: 0.875rem; }
-  .cols + .fine { margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid rgba(191, 219, 254, 0.35); }
+  .fine { margin-top: var(--space-4); font-size: var(--t-small); }
+  .cols + .fine { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--line); }
 </style>

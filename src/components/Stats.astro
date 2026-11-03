@@ -1,9 +1,9 @@
 ---
 import { stats } from '../data/stats';
 ---
-<section class="band band-dark" aria-label="BlueFrost in numbers (sample data)">
+<section class="band band-dark stats" aria-label="BlueFrost in numbers (sample data)">
   <div class="container">
-    <ul class="grid">
+    <ul>
       {stats.map((s) => (
         <li><strong>{s.value}</strong><span>{s.label}</span></li>
       ))}
@@ -12,7 +12,13 @@ import { stats } from '../data/stats';
 </section>
 
 <style>
-  li { display: grid; gap: var(--space-1); text-align: center; }
-  strong { font-size: clamp(2rem, 6vw, 2.75rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
-  span { color: var(--muted); font-weight: 500; }
+  .stats { padding-block: var(--space-12); }
+  ul { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8) var(--space-4); }
+  li { display: grid; gap: var(--space-2); align-content: start; padding-top: var(--space-4); border-top: 2px solid var(--accent); }
+  strong { font-size: var(--t-h2); font-weight: 800; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; }
+  span { color: var(--muted); font-weight: 500; line-height: 1.3; }
+  @media (min-width: 768px) {
+    .stats { padding-block: var(--space-16); }
+    ul { grid-template-columns: repeat(4, 1fr); gap: var(--space-8); }
+  }
 </style>

@@ -33,7 +33,7 @@ Plugins: ponytail is on for every subagent (its SubagentStart hook, mode `full`)
 
 ## 4. Stages and handoffs
 ```
-01-explore ─► 02-spec ─► 03-design ─► 04-build ─► 05-qa ─► 06-review ─► commit ─► 07-deploy (✋G4)
+01-explore ─► 02-spec ─► 03-design ─► 04-build ─► 04b-look check (lead + you) ─► 05-qa ─► 06-review ─► commit ─► 07-deploy (✋G4)
 ```
 | Stage | Inputs | Maker → output | Checker |
 |---|---|---|---|
@@ -86,5 +86,12 @@ Plugins: ponytail is on for every subagent (its SubagentStart hook, mode `full`)
 | 2026-11-03 | 06-review | lead | Asked about Orca (parallel agents in worktrees): not used. More tokens per run, and it would mix up this test run; a candidate for building the sibling portfolio pages in parallel later | n/a |
 | 2026-11-03 | 06-review | Bugsy | **PASS**, 0 bugs. New contrast.spec measures computed hover and focus colours for every .btn at 360/1280 (min 6.44:1), and was shown to fail when the threshold was raised. Focus order main → footer → quote bar. JS-off links exactly 6. Playwright 75 pass with --repeat-each=3. lhci 97/100/100/100. Not covered: non-button links, focus-ring contrast. ponytail: on | 48,862 (21 tool uses, 4.5 min) |
 | 2026-11-03 | 07-release | lead | History rewritten into one clean commit (noreply author, no tool folders). Stale docs/qa-360-services.png removed | n/a |
+| 2026-11-03 | 07-release | user | **Workflow change:** add a 👀 look check after the build and before Bugsy (the lead shows 360px + desktop screenshots, the user OKs or adds fixes). Added to /kickoff step 6 and to this file's stages | n/a |
+| 2026-11-03 | 07-release | Nori | Vetted 3 design skills from a TikTok video: emilkowalski/skills ✅, impeccable ⚠️ (binary + edit hooks), taste-skill ⚠️ (network + headless Chrome). work/explore/design-skills.md | 62,691 (12 tool uses, 2.3 min) |
+| 2026-11-03 | 07-release | distiller (sonnet) | User chose to distil all 3 into one global `usad-design` skill (~3k words, credits, no scripts). Found AI-directed instructions in the sources (run scripts, canned replies) and did not follow them. Lead review fixed one conflict: the "no invented proof" rule now allows labelled demo data | 134,942 (15 tool uses, 2.4 min) |
+| 2026-11-03 | 04b-look | user | **User correction:** the design "looks generic". Picked the Bold Frost direction plus a mark + wordmark logo. ADHD output mode made the default for all sessions (global CLAUDE.md) | n/a |
+| 2026-11-03 | 04-build | Bolt | Bold Frost redesign + logo (header, footer, favicon, OG), 3 look-check fixes; gate 5/5 green, Playwright 25 pass. Added a Services "Message us" button partly so the contrast test has a light-band button. ponytail: on | 132,250 (51 tool uses, 9.3 min) |
+| 2026-11-03 | 04b-look | lead | Look check (usad-design §8): OK. Only the hero placeholder is left (user's photo pick) | n/a |
+| 2026-11-03 | 05-qa | Bugsy (haiku) | Re-check after redesign: gate 5/5, lhci 99/100/100/100, 36.6 KB compressed first load, contrast measured in all bands (dark measured but not asserted, which is a small test gap). ponytail: on | see notification |
 
 **Token tracking:** subagent tokens come from each task notification. Lead tokens: run `/caveman-stats` or `explain-usage` at the end of each session and paste the total here.
