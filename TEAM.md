@@ -61,7 +61,7 @@ Plugins: ponytail is on for every subagent (its SubagentStart hook, mode `full`)
 - ✋ 1 deliverables: approved 2026-11-03
 - ✋ 2 visuals + team: approved 2026-11-03 (stack changed from plain HTML to Astro + TS + scoped CSS at the user's request)
 - ✋ 3 installs: approved 2026-11-03: spec-kit (`specify-cli` 1.2.6 via uv), ui-ux-pro-max (project-only), npm dev tools (astro, @astrojs/check, typescript, @playwright/test + chromium, @axe-core/playwright, @lhci/cli, html-validate), gitleaks (winget)
-- ✋ 4 public: repo push approved 2026-11-03 (https://github.com/usad-labs/bluefrost-aircon). Vercel deploy: user imports it. Vercel fallback if Hobby refuses the org repo: deploy with the CLI
+- ✋ 4 public: repo push approved 2026-11-03 (https://github.com/usad-labs/bluefrost-aircon). Live: https://bluefrost-aircon.vercel.app (Vercel import by the user, auto-deploys on push). Vercel fallback if Hobby refuses the org repo: deploy with the CLI
 
 ## 7. Log
 | Date | Stage | Role | What happened | Tokens |
@@ -117,5 +117,6 @@ Plugins: ponytail is on for every subagent (its SubagentStart hook, mode `full`)
 | 2026-11-03 | 05-qa | Bugsy (haiku) | Final-touch re-check PASS, 0 bugs: FAQ test updated (first open), new heading-alignment test (proven to fail on a 20px offset), 82 pass, 246 over 3 repeats; lhci 100/100/100/100. ponytail: on | 91,727 (34 tool uses, 7 min) |
 | 2026-11-03 | 07-release | lead | ✋ Gate 4 yes → pre-push checks (1 noreply author, gitleaks clean, 0 tool files, 0 private paths) → public repo usad-labs/bluefrost-aircon created and main pushed | n/a |
 | 2026-11-03 | 07-release | user | **Workflow change:** Bugsy re-checked every design iteration (8 Bugsy runs, about 600k tokens). New loop: Bolt → light gate → preview → user review, iterate without Bugsy; Bugsy runs once when the user is satisfied. Playwright moved out of the auto gate. Updated in /kickoff step 5 + 6 | n/a |
+| 2026-11-03 | 07-release | user + lead | Vercel import by the user → live at https://bluefrost-aircon.vercel.app (content verified, not just 200). Lead set `site` in astro.config (Bolt file, one line, logged) so og:image is absolute; live link added to README | n/a |
 
 **Token tracking:** subagent tokens come from each task notification. Lead tokens: run `/caveman-stats` or `explain-usage` at the end of each session and paste the total here.

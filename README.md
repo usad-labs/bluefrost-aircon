@@ -1,5 +1,7 @@
 # BlueFrost Aircon landing page
 
+**Live demo:** https://bluefrost-aircon.vercel.app
+
 A fast, mobile-first landing page for **BlueFrost Aircon**, a *fictional* aircon cleaning and repair business in Cavite, Philippines. It is a USAD Labs portfolio piece ("Connect. Automate. Accelerate."). All names, numbers, prices and reviews are invented sample data, and the photos of people are AI-generated.
 
 One page, 11 sections, one clear "Get a quote" action (a `tel:` link and a placeholder Messenger link). No form, no tracking, **0 client JavaScript**: it works with JS turned off.
