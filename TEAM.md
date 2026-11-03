@@ -113,6 +113,6 @@ Plugins: ponytail is on for every subagent (its SubagentStart hook, mode `full`)
 | 2026-11-03 | 04b-look | user | **User correction (5th):** services "Not sure" row not needed; FAQ plain and heading not aligned. Picked: remove the row; FAQ cards + "Talk to a technician" help card | n/a |
 | 2026-11-03 | 04-build | Bolt | Row removed; FAQ cards (first open), help card, heading aligned to the first card (`text-box: trim-start cap`); Reviews → band-white so it doesn't merge with the FAQ. 1 test failed only from the intended open-by-default item. ponytail: on | 104,100 (48 tool uses, 6.2 min) |
 | 2026-11-03 | 04b-look | lead | Look check OK at 1440/390. Re-cropped the help-card avatar from the hero photo (the old crop showed mostly cap) | n/a |
-| 2026-11-03 | 05-qa | Bugsy (haiku) | Final-touch re-check PASS, 0 bugs: FAQ test updated (first open), new heading-alignment test (proven to fail on a 20px offset), 82 pass, 246 over 3 repeats; lhci 100/100/100/100. ponytail: on | see notification |
+| 2026-11-03 | 05-qa | Bugsy (haiku) | Final-touch re-check PASS, 0 bugs: FAQ test updated (first open), new heading-alignment test (proven to fail on a 20px offset), 82 pass, 246 over 3 repeats; lhci 100/100/100/100. ponytail: on | 91,727 (34 tool uses, 7 min) |
 
 **Token tracking:** subagent tokens come from each task notification. Lead tokens: run `/caveman-stats` or `explain-usage` at the end of each session and paste the total here.
