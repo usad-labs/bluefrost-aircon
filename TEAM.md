@@ -18,7 +18,8 @@ A static landing page for a made-up aircon cleaning and repair company in Cavite
 
 **"Get a quote" button:** a `tel:` link to a made-up 09XX number plus a placeholder Messenger link. No form, so no personal data is collected.
 
-**Project checks (auto gate):** `.claude/quality-gates.txt`: `npm run check` · `npm run build` · `npx html-validate "dist/**/*.html"` · `gitleaks dir . --no-banner --redact`. Bugsy adds `npx playwright test` once tests exist. Lighthouse CI (`lhci`) runs in Bugsy's QA pass, not the auto gate, because it is slow.
+**Light gate (every Bolt turn, `.claude/quality-gates.txt`):** `npm run check` · `npm run build` · `npx html-validate "dist/**/*.html"` · `gitleaks dir . --no-banner --redact`.
+**Bugsy QA commands (once, when the user is satisfied):** `npx playwright test` · `npx lhci autorun` · `SHOTS=1 npx playwright test` (README screenshots).
 
 ## 3. Team
 | Name | Role | Job | Skills | Model (why) | Checked by |
@@ -115,5 +116,6 @@ Plugins: ponytail is on for every subagent (its SubagentStart hook, mode `full`)
 | 2026-11-03 | 04b-look | lead | Look check OK at 1440/390. Re-cropped the help-card avatar from the hero photo (the old crop showed mostly cap) | n/a |
 | 2026-11-03 | 05-qa | Bugsy (haiku) | Final-touch re-check PASS, 0 bugs: FAQ test updated (first open), new heading-alignment test (proven to fail on a 20px offset), 82 pass, 246 over 3 repeats; lhci 100/100/100/100. ponytail: on | 91,727 (34 tool uses, 7 min) |
 | 2026-11-03 | 07-release | lead | ✋ Gate 4 yes → pre-push checks (1 noreply author, gitleaks clean, 0 tool files, 0 private paths) → public repo usad-labs/bluefrost-aircon created and main pushed | n/a |
+| 2026-11-03 | 07-release | user | **Workflow change:** Bugsy re-checked every design iteration (8 Bugsy runs, about 600k tokens). New loop: Bolt → light gate → preview → user review, iterate without Bugsy; Bugsy runs once when the user is satisfied. Playwright moved out of the auto gate. Updated in /kickoff step 5 + 6 | n/a |
 
 **Token tracking:** subagent tokens come from each task notification. Lead tokens: run `/caveman-stats` or `explain-usage` at the end of each session and paste the total here.
