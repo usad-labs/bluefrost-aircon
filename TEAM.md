@@ -93,5 +93,8 @@ Plugins: ponytail is on for every subagent (its SubagentStart hook, mode `full`)
 | 2026-11-03 | 04-build | Bolt | Bold Frost redesign + logo (header, footer, favicon, OG), 3 look-check fixes; gate 5/5 green, Playwright 25 pass. Added a Services "Message us" button partly so the contrast test has a light-band button. ponytail: on | 132,250 (51 tool uses, 9.3 min) |
 | 2026-11-03 | 04b-look | lead | Look check (usad-design §8): OK. Only the hero placeholder is left (user's photo pick) | n/a |
 | 2026-11-03 | 05-qa | Bugsy (haiku) | Re-check after redesign: gate 5/5, lhci 99/100/100/100, 36.6 KB compressed first load, contrast measured in all bands (dark measured but not asserted, which is a small test gap). ponytail: on | 60,878 (17 tool uses, 3.4 min) |
+| 2026-11-03 | 04-build | lead | Hero photo hunt: Pexels was blocked at first (later allowed), and Unsplash/Pixabay were searched too. Rejected: visible brand (EuropAce), company text on a shirt, a real company's upload, hands-only shots. User picked Pixabay 6869855 (IqbalStock, Pixabay Content License). Downloaded 1280×866, 127 KB | n/a |
+| 2026-11-03 | 04-build | Bolt | Hero photo swapped in (astro:assets avif/webp, about 6–11 KB), placeholder deleted, CREDITS updated; gate 5/5 green; first load about 83 KB. ponytail: on | 37,429 (11 tool uses, 2 min) |
+| 2026-11-03 | 04b-look | lead | Look check OK at 1280 and 360. Fixed the copy "uniformed technicians" → "in full safety gear" to match the photo (a Bolt-owned data file, one string, logged) | n/a |
 
 **Token tracking:** subagent tokens come from each task notification. Lead tokens: run `/caveman-stats` or `explain-usage` at the end of each session and paste the total here.

@@ -16,7 +16,7 @@ export const site = {
 };
 
 export const trustClaims: { icon: IconName; text: string }[] = [
-  { icon: 'badge-check', text: 'Trained, uniformed technicians' },
+  { icon: 'badge-check', text: 'Trained technicians in full safety gear' },
   { icon: 'clock', text: 'Same-day service in Cavite' },
   { icon: 'shield-check', text: '90-day service warranty' },
   { icon: 'check', text: 'Prices quoted before we start' },

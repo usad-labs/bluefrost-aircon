@@ -1,11 +1,9 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import Icon from './Icon.astro';
 import { site } from '../data/site';
-// Swap the hero photo here, in this one file: change the import to the chosen photo (e.g. ../assets/hero.jpg)
-// and the alt text, then add its credit to CREDITS.md. The slot crops any photo with object-fit: cover.
-import heroImage from '../assets/hero-placeholder.svg';
-const heroAlt = 'Placeholder illustration of a wall-mounted air conditioner blowing cool air';
+import heroImage from '../assets/hero-technician.jpg';
+const heroAlt = 'Technician in safety glasses servicing a wall-mounted split aircon';
 ---
 <section class="band band-dark hero" aria-labelledby="hero-title">
   <div class="hero-grid">
@@ -20,7 +18,7 @@ const heroAlt = 'Placeholder illustration of a wall-mounted air conditioner blow
       </div>
     </div>
     <div class="photo">
-      <Image src={heroImage} alt={heroAlt} width={1200} height={900} sizes="(min-width: 900px) 50vw, 100vw" loading="eager" fetchpriority="high" decoding="async" />
+      <Picture src={heroImage} alt={heroAlt} formats={['avif', 'webp']} widths={[480, 720, 960, 1280]} width={1280} height={866} sizes="(min-width: 900px) 45vw, 100vw" loading="eager" fetchpriority="high" decoding="async" />
     </div>
   </div>
   <!-- cold-air wave 1 of 2: the curved edge into the next section -->
@@ -37,7 +35,7 @@ const heroAlt = 'Placeholder illustration of a wall-mounted air conditioner blow
   .lead { font-size: var(--t-h3); font-weight: 500; line-height: 1.5; color: var(--muted); max-width: 34rem; }
   .copy .btn-row { gap: var(--space-2); }
   .photo { aspect-ratio: 4 / 3; border-radius: 24px; overflow: hidden; background: var(--navy-2); }
-  .photo :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .photo :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 25% 50%; /* keeps face and screwdriver in frame at 4/3 and 4/5 */ }
   .wave { display: block; width: 100%; height: clamp(32px, 6vw, 72px); margin-bottom: -1px; fill: var(--frost); }
 
   /* Phones: one big button; "Message us" becomes a plain link (the sticky bar still has both). */

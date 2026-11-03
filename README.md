@@ -39,7 +39,7 @@ Lighthouse mobile (local build, 2026-11-03): performance 97–99, accessibility 
 - `src/data/` content data: services, prices, reviews, FAQ, stats, sample contacts (the section headings and hero copy are in the components)
 - `src/components/` one component per section
 - `src/styles/` design tokens and global styles
-- `src/assets/hero-placeholder.svg` hero image placeholder (swap steps are in `src/components/Hero.astro`)
+- `src/assets/hero-technician.jpg` hero photo (credit in `CREDITS.md`)
 - `CREDITS.md` fonts, icons and image credits
 
 ## Screenshots
