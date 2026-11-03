@@ -32,7 +32,7 @@ SHOTS=1 npx playwright test         # also regenerates the screenshots in docs/
 npx lhci autorun                    # Lighthouse CI (slow, so not in the auto gate)
 ```
 
-Lighthouse mobile 100/100/100/100, first load ≈ 70 KB (local build, 2026-11-03).
+Lighthouse mobile (local build, 2026-11-03): performance 97–100, accessibility 100, best practices 100, SEO 100; first load ≈ 70 KB.
 
 ## Where things are
 
