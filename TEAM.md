@@ -105,6 +105,6 @@ Plugins: ponytail is on for every subagent (its SubagentStart hook, mode `full`)
 | 2026-11-03 | 04b-look | user | **User correction (3rd):** desktop "Get a quote" buttons not aligned, too much blank space, uneven section sizes; must work on every device | n/a |
 | 2026-11-03 | 04b-look | lead | Look check at 1440/1024/768/390: pricing buttons at 3 different heights, services 1,685px tall, uneven padding, a 2+1 orphan pricing card at 768, trust row wrapping 4 lines | n/a |
 | 2026-11-03 | 04-build | Bolt | Responsive polish: 1200px container, section/strip padding tokens, services 1/2/4 cols, equal-height pricing, FAQ help block, stretch-aligned steps. 1440 total 7,352 → 6,371px. Gate 5/5. ponytail: on | 145,686 (61 tool uses, 10.4 min) |
-| 2026-11-03 | 05-qa | Bugsy | tests/layout.spec.ts: 29 tests (7 widths × no sideways scroll, aligned buttons/prices, no orphans, one padding token, services < 1,000px), proven to fail on broken CSS; 87/87 with repeat-each=3. lhci 100/100/100/100. 0 bugs. ponytail: on | see notification |
+| 2026-11-03 | 05-qa | Bugsy | tests/layout.spec.ts: 29 tests (7 widths × no sideways scroll, aligned buttons/prices, no orphans, one padding token, services < 1,000px), proven to fail on broken CSS; 87/87 with repeat-each=3. lhci 100/100/100/100. 0 bugs. ponytail: on | 63,679 (18 tool uses, 5.1 min) |
 
 **Token tracking:** subagent tokens come from each task notification. Lead tokens: run `/caveman-stats` or `explain-usage` at the end of each session and paste the total here.
