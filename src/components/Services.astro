@@ -1,6 +1,8 @@
 ---
+import { Picture } from 'astro:assets';
 import Icon from './Icon.astro';
 import { services } from '../data/services';
+import { formatPeso } from '../data/pricing';
 import { site } from '../data/site';
 ---
 <section class="band band-light" id="services" aria-labelledby="services-title">
@@ -9,18 +11,27 @@ import { site } from '../data/site';
       <h2 id="services-title">Everything your aircon needs</h2>
       <p>Four services, one team, one clear price before we start.</p>
     </div>
-    <ol>
-      {services.map((s, i) => (
+    <ul class="cards">
+      {services.map((s) => (
         <li>
-          <span class="num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-          <h3>{s.name}</h3>
-          <div class="text">
+          <div class="media">
+            <div class="shot">
+              <Picture src={s.image} alt={s.alt} formats={['avif', 'webp']} widths={[448, 672, 896]} width={896} height={672} sizes="(min-width: 1168px) 548px, (min-width: 768px) calc(50vw - 36px), calc(100vw - 34px)" loading="lazy" decoding="async" />
+            </div>
+            <span class="badge" aria-hidden="true"><Icon name={s.icon} size={28} /></span>
+          </div>
+          <div class="body">
+            <h3>{s.name}</h3>
             <p class="benefit">{s.benefit}</p>
             <p class="detail">{s.detail}</p>
+            <a class="price" href="#pricing">
+              <strong>{s.from ? `from ${formatPeso(s.from)}` : 'Quoted first'}</strong>
+              <span class="go">{s.from ? 'See packages' : 'See pricing'} <Icon name="arrow-right" size={20} /></span>
+            </a>
           </div>
         </li>
       ))}
-    </ol>
+    </ul>
     <div class="ask">
       <p>Not sure which one you need?</p>
       <a class="btn btn-secondary" href={site.messengerUrl} target="_blank" rel="noopener" aria-label={site.messengerAriaLabel}>
@@ -31,19 +42,29 @@ import { site } from '../data/site';
 </section>
 
 <style>
-  ol { border-top: 2px solid var(--fg); }
-  li { display: grid; grid-template-columns: auto 1fr; gap: var(--space-2) var(--space-4); padding-block: var(--space-6); border-bottom: 1px solid var(--line); }
-  .num { grid-row: span 2; font-size: var(--t-h2); font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
-  h3 { align-self: center; }
-  .text { grid-column: 2; display: grid; gap: var(--space-2); max-width: 36rem; }
+  .cards { display: grid; gap: var(--space-8); }
+  li { display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-photo); }
+  .media { position: relative; }
+  .shot { aspect-ratio: 16 / 10; overflow: hidden; border-radius: calc(var(--radius-photo) - 1px) calc(var(--radius-photo) - 1px) 0 0; background: var(--navy-2); }
+  .shot :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; }
+  /* the badge overlaps the photo edge: a white ring cuts it out of both, a short navy shadow lifts it */
+  .badge {
+    position: absolute; left: var(--space-6); bottom: -28px; display: grid; place-items: center; width: 56px; height: 56px;
+    border-radius: 50%; background: var(--navy); color: var(--cyan); box-shadow: 0 0 0 4px var(--white), var(--shadow-float);
+  }
+  .body { display: flex; flex: 1; flex-direction: column; gap: var(--space-2); padding: var(--space-12) var(--space-6) var(--space-6); }
   .benefit { font-weight: 600; }
-  .detail { color: var(--muted); }
-  .ask { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-6); margin-top: var(--space-8); font-weight: 600; }
+  .detail { color: var(--muted); margin-bottom: var(--space-4); }
+  .price {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-top: auto; min-height: 44px;
+    padding-top: var(--space-4); border-top: 1px solid var(--line); color: var(--fg); text-decoration: none;
+  }
+  .price strong { font-size: var(--t-h3); font-weight: 800; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+  .go { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--link); font-weight: 700; }
+  .price:hover .go { text-decoration: underline; text-underline-offset: 4px; }
+  .ask { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-6); margin-top: var(--space-12); font-weight: 600; }
 
   @media (min-width: 768px) {
-    li { grid-template-columns: 5rem minmax(0, 5fr) minmax(0, 7fr); align-items: baseline; gap: var(--space-6); padding-block: var(--space-8); }
-    .num { grid-row: auto; }
-    h3 { font-size: var(--t-h2); letter-spacing: -0.02em; line-height: 1.1; }
-    .text { grid-column: auto; }
+    .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-12) var(--space-8); }
   }
 </style>

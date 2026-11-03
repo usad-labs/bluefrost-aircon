@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { imagesNotLoaded, scrollThrough } from './helpers';
 
 for (const width of [320, 360, 768, 1280]) {
   test(`no sideways scroll at ${width}px`, async ({ page }) => {
@@ -31,6 +32,14 @@ test('first load transfers < 500 KB', async ({ page }) => {
   await Promise.all(pending);
   console.log(`transferred ~${(bytes / 1024).toFixed(1)} KB (uncompressed bodies)`);
   expect(bytes).toBeLessThan(500 * 1024);
+});
+
+test('after scrolling, every img has loaded', async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 640 });
+  await page.goto('/');
+  await scrollThrough(page);
+  await page.waitForLoadState('networkidle');
+  expect(await imagesNotLoaded(page)).toEqual([]);
 });
 
 for (const width of [360, 1280]) {

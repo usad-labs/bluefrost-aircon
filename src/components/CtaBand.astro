@@ -1,18 +1,27 @@
 ---
+import { Picture } from 'astro:assets';
 import Icon from './Icon.astro';
 import { site } from '../data/site';
+import roomPhoto from '../assets/v3/cta-room.jpg';
 ---
-<section class="band band-accent cta-band" aria-labelledby="cta-title">
-  <!-- cold-air wave 2 of 2: a loose line behind the right side of the band -->
-  <svg class="wave" viewBox="0 0 600 200" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" focusable="false">
-    <path d="M-20 150C80 60 160 60 260 110S440 160 620 50" />
-    <path d="M-20 190C80 100 160 100 260 150S440 200 620 90" />
-  </svg>
-  <div class="container cta">
-    <h2 id="cta-title">Ready for a cold room?</h2>
-    <p>Call or message us for a quote. We usually reply within the hour.</p>
-    <div class="btn-row">
-      <a class="btn btn-primary" href={site.phoneHref}><Icon name="phone" size={20} /> {site.quoteLabel}</a>
+<section class="cta-band" aria-labelledby="cta-title">
+  <div class="band band-dark stage">
+    <div class="bg-photo">
+      <Picture src={roomPhoto} alt="" formats={['avif', 'webp']} widths={[480, 720, 960, 1344]} width={1344} height={576} sizes="(min-width: 1024px) 100vw, max(100vw, 560px)" loading="lazy" decoding="async" />
+    </div>
+    <div class="container cta">
+      <h2 id="cta-title">Ready for a cold room?</h2>
+      <p>Call or message us for a quote. We usually reply within the hour.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href={site.phoneHref}><Icon name="phone" size={20} /> {site.quoteLabel}</a>
+      </div>
+    </div>
+  </div>
+  <!-- contact details: the cyan accent set, so the dark band above keeps its one action colour -->
+  <div class="band band-accent contact">
+    <div class="container contact-inner">
+      <a class="tel" href={site.phoneHref}><Icon name="phone" size={24} /> {site.phoneDisplay}</a>
+      <p>{site.hours} <span class="nb">(sample)</span></p>
       <a class="btn btn-secondary" href={site.messengerUrl} target="_blank" rel="noopener" aria-label={site.messengerAriaLabel}>
         <Icon name="message" size={20} /> {site.messengerLabel}
       </a>
@@ -21,10 +30,32 @@ import { site } from '../data/site';
 </section>
 
 <style>
-  .cta-band { position: relative; overflow: hidden; }
-  .wave { display: none; position: absolute; inset: auto 0 0 auto; width: min(100%, 720px); height: 100%; fill: none; stroke: var(--navy); stroke-width: 3; stroke-linecap: round; opacity: 0.18; pointer-events: none; }
-  .cta { position: relative; display: grid; gap: var(--space-6); justify-items: start; }
+  .stage { position: relative; isolation: isolate; overflow: hidden; padding-block: 220px var(--space-12); }
+  /* Phones: the family photo fills the top 300px and fades into navy; the text sits on the faded part. */
+  .bg-photo { inset: 0 0 auto 0; height: 300px; --scrim: linear-gradient(180deg, rgb(11 21 48 / 0.15) 0%, rgb(11 21 48 / 0.5) 45%, rgb(11 21 48 / 0.92) 80%, var(--navy) 100%); }
+  .bg-photo :global(img) { object-position: 85% 50%; }
+  .cta { display: grid; gap: var(--space-4); justify-items: start; }
   .cta h2 { font-size: var(--t-display); letter-spacing: -0.035em; line-height: 1.02; max-width: 12ch; }
-  @media (min-width: 768px) { .wave { display: block; } }
   .cta p { font-size: var(--t-h3); font-weight: 500; max-width: 30rem; }
+  .cta .btn-row { margin-top: var(--space-2); }
+  .nb { white-space: nowrap; }
+
+  .contact { padding-block: var(--space-6); }
+  .contact-inner { display: grid; gap: var(--space-3); justify-items: start; align-items: center; }
+  .tel { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; font-size: var(--t-h3); font-weight: 800; white-space: nowrap; }
+  .contact p { font-weight: 600; }
+
+  @media (min-width: 768px) {
+    .contact-inner { grid-template-columns: auto 1fr auto; gap: var(--space-8); }
+  }
+
+  /* The headline sits on the dark left of the photo, so the photo only goes full bleed where the text is narrow
+     compared with the screen (1024px and up); below that it stacks like the phone layout. */
+  @media (min-width: 1024px) {
+    .stage { padding-block: var(--space-24); min-height: 520px; display: grid; align-content: center; }
+    .bg-photo { inset: 0; height: auto; --scrim: linear-gradient(90deg, var(--navy) 0%, rgb(11 21 48 / 0.94) 32%, rgb(11 21 48 / 0.7) 46%, rgb(11 21 48 / 0.25) 60%, rgb(11 21 48 / 0) 74%); }
+    .bg-photo :global(img) { object-position: 50% 50%; }
+    .cta h2 { font-size: clamp(3.5rem, 6.4vw, 5.5rem); }
+    .cta p { max-width: 26rem; }
+  }
 </style>

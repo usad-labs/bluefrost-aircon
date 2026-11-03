@@ -64,6 +64,13 @@ h3 { font-size: var(--t-h3); font-weight: 700; letter-spacing: -0.01em; line-hei
 .section-head { max-width: 40rem; margin-bottom: var(--space-12); }
 .section-head p { margin-top: var(--space-4); color: var(--muted); max-width: 65ch; }
 
+/* Photo behind a section's content (hero, stats, CTA). The section needs position: relative + isolation: isolate.
+   Each section sets --scrim (a gradient) so its text stays readable over the photo. */
+.bg-photo { position: absolute; inset: 0; z-index: -1; }
+.bg-photo picture { display: contents; }
+.bg-photo img { width: 100%; height: 100%; object-fit: cover; }
+.bg-photo::after { content: ''; position: absolute; inset: 0; background: var(--scrim); }
+
 /* Card: keeps its own colours inside any band. Add .card-dark for a navy surface. */
 .card {
   background: var(--white); color: var(--fg);

@@ -93,7 +93,7 @@ A business owner whom USAD Labs is pitching opens the live page to judge the qua
 - **FR-012**: On phones, a quote action MUST stay reachable while scrolling (a sticky bar) without covering content.
 - **FR-013**: The footer MUST show sample contact details (number, service area in Cavite towns, hours), the fictional-business notice and the USAD Labs credit.
 - **FR-014**: All business names, people, numbers, reviews and prices MUST be invented. No real people, companies, logos or trademarks appear anywhere, including in photos.
-- **FR-015**: Every photo MUST come from a free source whose licence allows commercial use without payment. Its source and photographer MUST be recorded in a credits file.
+- **FR-015**: Every photo MUST be either free stock whose licence allows commercial use, or AI-generated for this demo with a model whose licence allows commercial use (FLUX.2 [klein] 4B, Apache-2.0). People in AI photos are fictional, and the page says so in the footer. Sources and licences are recorded in CREDITS.md.
 - **FR-016**: The page MUST include a title, a meta description, a social share preview (title, description and image) and a favicon.
 - **FR-017**: All content MUST work and be readable with JavaScript turned off.
 - **FR-018**: The services section MUST show exactly 4 service cards (cleaning, repair, installation, freon/gas refill), each with an icon, a one-line benefit and a short detail.

@@ -1,6 +1,6 @@
 # BlueFrost Aircon landing page
 
-A fast, mobile-first landing page for **BlueFrost Aircon**, a *fictional* aircon cleaning and repair business in Cavite, Philippines. It is a USAD Labs portfolio piece ("Connect. Automate. Accelerate."). All names, numbers, prices and reviews are invented sample data.
+A fast, mobile-first landing page for **BlueFrost Aircon**, a *fictional* aircon cleaning and repair business in Cavite, Philippines. It is a USAD Labs portfolio piece ("Connect. Automate. Accelerate."). All names, numbers, prices and reviews are invented sample data, and the photos of people are AI-generated.
 
 One page, 11 sections, one clear "Get a quote" action (a `tel:` link and a placeholder Messenger link). No form, no tracking, **0 client JavaScript**: it works with JS turned off.
 
@@ -32,14 +32,14 @@ SHOTS=1 npx playwright test         # also regenerates the screenshots in docs/
 npx lhci autorun                    # Lighthouse CI (slow, so not in the auto gate)
 ```
 
-Lighthouse mobile (local build, 2026-11-03): performance 97–99, accessibility 100, best practices 100, SEO 100; first load ≈ 40 KB compressed.
+Lighthouse mobile (local build, 2026-11-03, v3 photo design): performance 99, accessibility 100, best practices 100, SEO 100; LCP 1.4 s, CLS 0; first load ≈ 137 KB (the hero photo is eager, every other photo is lazy).
 
 ## Where things are
 
 - `src/data/` content data: services, prices, reviews, FAQ, stats, sample contacts (the section headings and hero copy are in the components)
 - `src/components/` one component per section
 - `src/styles/` design tokens and global styles
-- `src/assets/hero-technician.jpg` hero photo (credit in `CREDITS.md`)
+- `src/assets/v3/` the photos (hero, services, faces, final call to action), AI-generated; see `CREDITS.md`
 - `CREDITS.md` fonts, icons and image credits
 
 ## Screenshots

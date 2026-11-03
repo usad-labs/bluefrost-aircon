@@ -1,12 +1,13 @@
 ---
+import { Picture } from 'astro:assets';
 import Icon from './Icon.astro';
-import { reviews, initials } from '../data/reviews';
+import { reviews } from '../data/reviews';
 ---
 <section class="band band-light" id="reviews" aria-labelledby="reviews-title">
   <div class="container">
     <div class="section-head">
       <h2 id="reviews-title">What customers say</h2>
-      <p>Sample reviews, invented for this demo.</p>
+      <p>Sample reviews, invented for this demo. The faces are AI-generated.</p>
     </div>
     <ul class="grid">
       {reviews.map((r, i) => (
@@ -18,7 +19,9 @@ import { reviews, initials } from '../data/reviews';
             </p>
             <blockquote>“{r.text}”</blockquote>
             <figcaption>
-              <span class="avatar" aria-hidden="true">{initials(r.name)}</span>
+              <span class="face">
+                <Picture src={r.face} alt={`${r.name}, sample reviewer (AI-generated photo)`} formats={['avif', 'webp']} widths={[72, 144]} width={72} height={72} sizes="72px" loading="lazy" decoding="async" />
+              </span>
               <span><strong>{r.name}</strong><br /><span class="town">{r.town}, Cavite</span></span>
             </figcaption>
           </figure>
@@ -30,20 +33,22 @@ import { reviews, initials } from '../data/reviews';
 
 <style>
   .grid { gap: var(--space-4); }
+  .grid > li { border-radius: var(--radius-photo); }
   figure { display: grid; gap: var(--space-4); margin: 0; height: 100%; align-content: space-between; }
   .rating { display: flex; align-items: center; gap: 2px; color: var(--accent); }
   .rating-text { margin-left: var(--space-2); font-size: var(--t-small); font-weight: 600; color: var(--muted); }
   blockquote { margin: 0; }
   .featured blockquote { font-size: var(--t-h3); font-weight: 600; line-height: 1.4; }
   .featured { padding: var(--space-8) var(--space-6); }
-  figcaption { display: flex; align-items: center; gap: var(--space-3); }
-  .avatar { display: grid; place-items: center; flex: none; width: 44px; height: 44px; border-radius: 50%; background: var(--navy); color: var(--cyan); font-weight: 700; }
-  .featured .avatar { background: var(--cyan); color: var(--navy); }
+  figcaption { display: flex; align-items: center; gap: var(--space-4); }
+  .face { flex: none; width: 64px; height: 64px; border-radius: 50%; overflow: hidden; background: var(--navy-2); }
+  .face :global(img) { width: 100%; height: 100%; object-fit: cover; }
   .town { color: var(--muted); font-size: var(--t-small); }
   /* one big quote on the left, two smaller on the right: not a row of equal cards */
   @media (min-width: 900px) {
     .grid { grid-template-columns: 7fr 5fr; }
     .featured { grid-row: span 2; padding: var(--space-12); }
     .featured blockquote { font-size: var(--t-h2); line-height: 1.2; letter-spacing: -0.02em; }
+    .featured .face { width: 80px; height: 80px; }
   }
 </style>

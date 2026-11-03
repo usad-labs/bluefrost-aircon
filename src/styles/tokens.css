@@ -31,6 +31,9 @@
   --t-small: 0.875rem;
 
   --radius-card: 16px;
+  --radius-photo: 20px;
+  /* the only shadow: short and navy-tinted, used where one thing overlaps another (badge on photo, card on photo) */
+  --shadow-float: 0 6px 16px rgba(11, 21, 48, 0.28);
   --radius-pill: 999px;
   --max-width: 1120px;
   --gutter: 16px;

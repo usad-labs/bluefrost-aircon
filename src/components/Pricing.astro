@@ -32,14 +32,18 @@ import { site } from '../data/site';
 </section>
 
 <style>
-  .grid { gap: var(--space-4); }
-  .grid > li { display: grid; gap: var(--space-3); align-content: start; padding: var(--space-8) var(--space-6); }
-  .badge { justify-self: start; padding: var(--space-1) var(--space-3); border-radius: var(--radius-pill); background: var(--navy); color: var(--cyan); font-weight: 700; font-size: var(--t-small); }
+  .grid { gap: var(--space-8) var(--space-4); }
+  .grid > li { position: relative; display: grid; gap: var(--space-3); align-content: start; padding: var(--space-8) var(--space-6); border-radius: var(--radius-photo); }
+  /* the badge straddles the card's top edge: a real overlap, so it gets the short navy shadow */
+  .badge {
+    position: absolute; top: -16px; left: var(--space-6); padding: var(--space-1) var(--space-4); border-radius: var(--radius-pill);
+    background: var(--white); color: var(--navy); font-weight: 700; font-size: var(--t-small); box-shadow: var(--shadow-float);
+  }
   .price { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2); }
   .price strong { font-size: var(--t-h2); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; font-variant-numeric: tabular-nums; }
   .from { color: var(--muted); }
   .units { color: var(--muted); font-size: var(--t-small); }
-  .includes { display: grid; gap: var(--space-2); margin-block: var(--space-2) var(--space-6); }
+  .includes { display: grid; gap: var(--space-2); margin-block: var(--space-2) var(--space-6); padding-top: var(--space-4); border-top: 1px solid var(--line); }
   .includes li { display: flex; gap: var(--space-2); align-items: flex-start; }
   .includes :global(svg) { flex: none; margin-top: 2px; color: var(--accent); }
   .grid > li > .btn { align-self: end; }
